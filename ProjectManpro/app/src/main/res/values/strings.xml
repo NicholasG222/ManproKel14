@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">manpro</string>
+    <string name="login">Login</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="register">register</string>
+    <string name="click_to_login">click To Login</string>
+    <string name="click_to_register">click to register</string>
+    <string name="logout">logout</string>
+</resources>
