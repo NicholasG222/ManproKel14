@@ -22,7 +22,7 @@
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/ukp"
+                android:src="@drawable/logo"
                 android:layout_marginRight="20dp"
                 ></ImageView>
             <TextView
@@ -44,6 +44,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/search"
             android:queryHint="Search here"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAccess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_baseline_admin_panel_settings_24" />
 
         <TextView
             android:id="@+id/textView2"

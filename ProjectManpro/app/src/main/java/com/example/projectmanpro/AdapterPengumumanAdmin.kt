@@ -31,7 +31,7 @@ class AdapterPengumumanAdmin (
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val view: View =LayoutInflater.from(parent.context).inflate(R.layout.rv_pengumuman, parent, false)
+        val view: View =LayoutInflater.from(parent.context).inflate(R.layout.rv_pengumuman_admin, parent, false)
         return ListViewHolder(view)
     }
 

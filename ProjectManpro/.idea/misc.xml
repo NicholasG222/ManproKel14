@@ -3,18 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/activity_adapter_pengumuman_admin.xml" value="0.1" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/activity_add_group.xml" value="0.1" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/activity_add_pengumuman.xml" value="0.1" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/activity_chat_group.xml" value="0.264" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/activity_edit_group.xml" value="0.1" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/activity_edit_pengumuman.xml" value="0.1" />
-        <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/activity_main_admin.xml" value="0.2" />
+        <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/received_chat.xml" value="0.1" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/rv_group_admin.xml" value="0.1" />
-        <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/rv_grup.xml" value="0.2" />
+        <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/rv_grup.xml" value="0.1" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/rv_pengumuman.xml" value="0.2" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/rv_pengumuman_admin.xml" value="0.1" />
+        <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/splash_screem.xml" value="0.2" />
       </map>
     </option>
   </component>

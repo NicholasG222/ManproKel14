@@ -16,8 +16,8 @@ class AdapterGrupAdmin(
     inner class ListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         var nama: TextView = itemView.findViewById((R.id.textViewNama))
         var kategori: TextView = itemView.findViewById(R.id.textViewKategori)
-        var _buttonDelete:Button = itemView.findViewById(R.id.buttonDelete)
-        var _buttonEdit:Button = itemView.findViewById(R.id.buttonEdit)
+        var buttonDelete: Button = itemView.findViewById(R.id.buttonDelete)
+        var buttonEdit: Button = itemView.findViewById(R.id.buttonEdit)
 
     }
 
@@ -37,8 +37,14 @@ class AdapterGrupAdmin(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val view: View =LayoutInflater.from(parent.context).inflate(R.layout.rv_grup, parent, false)
+        val view: View =LayoutInflater.from(parent.context).inflate(R.layout.rv_group_admin, parent, false)
         return ListViewHolder(view)
+    }
+
+
+
+    override fun getItemCount(): Int {
+        return listGrup.size
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
@@ -46,18 +52,13 @@ class AdapterGrupAdmin(
         holder.nama.setText(grup.nama)
         holder.kategori.setText(grup.kategori)
 
-        holder._buttonDelete.setOnClickListener {
+        holder.buttonDelete.setOnClickListener {
             onItemClickCallback.deleteGrup(listGrup[position])
         }
 
-        holder._buttonEdit.setOnClickListener {
+        holder.buttonEdit.setOnClickListener {
             onItemClickCallback.pindahEdit(listGrup[position])
         }
-
-    }
-
-    override fun getItemCount(): Int {
-        return listGrup.size
     }
 
 

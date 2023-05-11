@@ -1,7 +1,9 @@
 package com.example.projectmanpro
 
 import android.content.ContentValues.TAG
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.w3c.dom.Text
 
 import java.util.*
@@ -29,6 +33,7 @@ class HomeUser : AppCompatActivity() {
     private lateinit var rvGrup: RecyclerView
     private lateinit var textKosong: TextView
     private lateinit var textKosongGrup: TextView
+    lateinit var sp: SharedPreferences
 
     private fun SiapkanData(){
         db.collection("tbPengumuman")
@@ -78,6 +83,7 @@ class HomeUser : AppCompatActivity() {
     private fun filterList(query : String?){
         textKosong = findViewById(R.id.textViewKosong)
         textKosongGrup = findViewById(R.id.textViewKosongGrup)
+
 
         if (query != null){
             val filteredList = arrayListOf<Pengumuman>()
@@ -133,7 +139,8 @@ class HomeUser : AppCompatActivity() {
         textKosongGrup.isVisible = false
         var seeMore1 = findViewById<TextView>(R.id.textViewMore)
         var seeMore2 = findViewById<TextView>(R.id.textViewMore2)
-
+        var fabReq = findViewById<FloatingActionButton>(R.id.fabAccess)
+        sp = getSharedPreferences("dataSP", MODE_PRIVATE)
         db.collection("tbPengumuman")
             .get()
             .addOnSuccessListener { result ->
@@ -162,6 +169,31 @@ class HomeUser : AppCompatActivity() {
 //                    rvGrup.adapter = AdapterGrup(listGrup)
 //                }
                 SiapkanData()
+                val isiSP = sp.getString("spRegister", null)
+                fabReq.setOnClickListener {
+                    AlertDialog.Builder(this@HomeUser).setTitle("Request access as admin")
+                        .setMessage("Apakah ingin meminta akses menjadi admin?")
+                        .setPositiveButton(
+                            "REQUEST",
+                            DialogInterface.OnClickListener { dialogInterface, i ->
+                                var request = AdminAccessRequests(isiSP, "admin")
+                                isiSP?.let { it1 ->
+                                    db.collection("tbRequests")
+                                        .document(isiSP.toString())
+                                        .set(request)
+                                }
+
+                            }).setNegativeButton(
+                            "BATAL",
+                            DialogInterface.OnClickListener { dialogInterface, i ->
+                                Toast.makeText(
+                                    this@HomeUser,
+                                    "BATALKAN REQUEST",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                            }).show()
+                }
         seeMore1.setOnClickListener {
             seeMore1.isVisible = false
             listPengumuman = arrayListOf<Pengumuman>()

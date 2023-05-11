@@ -50,6 +50,19 @@
 
             android:text="Pengumuman Informatika" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAccept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_baseline_admin_panel_settings_24" />
+
+        <TextView
+            android:id="@+id/textViewAccess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Access lists" />
+
         <Button
             android:id="@+id/buttonAddAnn"
             android:layout_width="218dp"
