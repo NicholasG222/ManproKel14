@@ -44,7 +44,7 @@ class AddGroup : AppCompatActivity() {
             }
 
             dataGrup.add(Grup(inputTitle.text.toString(),inputCategory.text.toString()))
-            val eIntent = Intent(this@AddGroup, HomeUser::class.java).apply {
+            val eIntent = Intent(this@AddGroup, MainAdmin::class.java).apply {
 
             }
             startActivity(eIntent)

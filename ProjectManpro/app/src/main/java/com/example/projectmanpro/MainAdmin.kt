@@ -2,6 +2,7 @@ package com.example.projectmanpro
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -25,6 +26,7 @@ class MainAdmin : AppCompatActivity() {
     private lateinit var _nama : MutableList<String>
     private lateinit var _kategori : MutableList<String>
     private var adapterG = AdapterGrupAdmin(listGrup)
+    lateinit var sp: SharedPreferences
     //  val sp = getSharedPreferences("data_SP", MODE_PRIVATE)
 
 
@@ -34,7 +36,7 @@ class MainAdmin : AppCompatActivity() {
             .addOnSuccessListener { result ->
                 var count = 0
                 for (document in result) {
-                    var pengumuman = Pengumuman(document.getString("judul"), "general", document.getString("isi"))
+                    var pengumuman = Pengumuman(document.getString("judul"), document.getString("date"), document.getString("isi"))
                     listPengumuman.add(pengumuman)
                     count++
                     if(count > 1){
@@ -71,7 +73,7 @@ class MainAdmin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_admin)
-
+        sp = getSharedPreferences("dataSP", MODE_PRIVATE)
         rvPengumuman = findViewById(R.id.rvPengumuman)
         rvGrup = findViewById(R.id.rvGrup)
         var listRequests = arrayListOf<AdminAccessRequests>()
@@ -79,45 +81,26 @@ class MainAdmin : AppCompatActivity() {
 
         SiapkanData()
 
-        adapterG.setOnItemClickCallback(object : AdapterGrupAdmin.OnItemClickCallback{
-
-
-            override fun pindahEdit(data: Grup) {
-
-                val eIntent = Intent(this@MainAdmin, EditGroup::class.java)
-                startActivity(eIntent)
-            }
-
-            override fun deleteGrup(pos: Grup) {
-
-
-            }
-
-
-        }
-        )
+       setCallbackG()
 
         var seeMore1 = findViewById<TextView>(R.id.textViewMore)
         var seeMore2 = findViewById<TextView>(R.id.textViewMore2)
 
-
+        var tvLogout = findViewById<TextView>(R.id.textViewLogout)
+        tvLogout.setOnClickListener {
+            val editor = sp.edit()
+            editor.putString("spRegister", null)
+            editor.apply()
+            val intent = Intent(this@MainAdmin, Login::class.java)
+            startActivity(intent)
+        }
         val buttonAddP = findViewById<Button>(R.id.buttonAddAnn)
         val buttonAddG = findViewById<Button>(R.id.buttonAddGroup)
         var fabAccept = findViewById<FloatingActionButton>(R.id.fabAccept)
-        var listText = findViewById<TextView>(R.id.textViewAccess)
+
         fabAccept.setOnClickListener {
-            db.collection("tbRequests")
-                .get()
-                .addOnSuccessListener { result ->
-
-                    for (document in result) {
-                        var requests = AdminAccessRequests(document.getString("email"), document.getString("role"))
-                        listRequests.add(requests)
-
-                    }
-                    listText.setText(listRequests.toString())
-//
-                }
+            val intent = Intent(this@MainAdmin, AcceptRequest::class.java)
+            startActivity(intent)
 
 
         }
@@ -178,5 +161,54 @@ class MainAdmin : AppCompatActivity() {
         }
 
 
+    }
+    fun setCallbackG(){
+        adapterG.setOnItemClickCallback(object : AdapterGrupAdmin.OnItemClickCallback{
+
+
+            override fun pindahEdit(data: Grup) {
+
+                val eIntent = Intent(this@MainAdmin, EditGroup::class.java).apply{
+                    putExtra(EditGroup.data, data)
+                }
+                startActivity(eIntent)
+            }
+
+            override fun deleteGrup(pos: Grup) {
+                AlertDialog.Builder(this@MainAdmin).setTitle("Request access as admin")
+                    .setMessage("Apakah Anda ingin menghapus grup?")
+                    .setPositiveButton(
+                        "HAPUS",
+                        DialogInterface.OnClickListener { dialogInterface, i ->
+                            db.collection("tbGrup").document(pos.nama!!).delete()
+                            listGrup.remove(pos)
+                            adapterG.notifyDataSetChanged()
+
+
+                        }).setNegativeButton(
+                        "BATAL",
+                        DialogInterface.OnClickListener { dialogInterface, i ->
+                            Toast.makeText(
+                                this@MainAdmin,
+                                "BATAL",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                        }).show()
+
+            }
+
+            override fun imageClicked(data: Grup) {
+                val eIntent = Intent(this@MainAdmin, ChatGroupActivity::class.java).apply{
+                    putExtra(ChatGroupActivity.data, data.nama.toString())
+                }
+
+                startActivity(eIntent)
+
+            }
+
+
+        }
+        )
     }
 }

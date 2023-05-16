@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Project Manpro</string>
+    <string-array name="role_array">
+        <item>Dosen</item>
+        <item>Sekretaris</item>
+        <item>Asisten dosen</item>
+        <item>Asisten lab</item>
+        <item>Dosen luar biasa</item>
+        <item>Staff</item>
+        <item>Wakil kaprodi</item>
+        <item>Ketua HIMA</item>
+    </string-array>
 </resources>

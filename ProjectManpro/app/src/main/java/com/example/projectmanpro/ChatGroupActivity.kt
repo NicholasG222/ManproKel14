@@ -17,7 +17,7 @@ class ChatGroupActivity : AppCompatActivity() {
     private lateinit var _foto : TypedArray
     private lateinit var rvPengumumanGrup: RecyclerView
     private var arPengumuman = arrayListOf<pengumumangrup>()
-
+    lateinit var dataIntent: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +25,7 @@ class ChatGroupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chat_group)
 
         rvPengumumanGrup = findViewById(R.id.rvChatGrup)
+        dataIntent = intent.getStringExtra(data)!!
         SiapkanData()
     }
 
@@ -32,18 +33,19 @@ class ChatGroupActivity : AppCompatActivity() {
         db.collection("tbPengumumanGrup")
             .get()
             .addOnSuccessListener { result ->
-                val dataIntent = intent.getStringExtra(data)
+
                 Log.d("data",dataIntent.toString())
                 for (document in result) {
+                        if(document.getString("grup") == dataIntent) {
+                            var pengumumangrup = pengumumangrup(
+                                document.getString("pengirim"),
+                                document.getString("judul"),
+                                document.getString("isi"),
+                                document.getString("grup")
+                            )
+                            listPengumuman.add(pengumumangrup)
+                        }
 
-                        var pengumumangrup = pengumumangrup(
-                            document.getString("pengirim"),
-                            document.getString("judul"),
-                            document.getString("isi"),
-                            document.getString("grup")
-                        )
-                        listPengumuman.add(pengumumangrup)
-                    Log.d("list", listPengumuman.toString())
 
 
 

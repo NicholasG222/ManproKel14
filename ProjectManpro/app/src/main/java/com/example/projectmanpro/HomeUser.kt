@@ -41,7 +41,7 @@ class HomeUser : AppCompatActivity() {
             .addOnSuccessListener { result ->
                 var count = 0
                 for (document in result) {
-                    var pengumuman = Pengumuman(document.getString("judul"), "general", document.getString("isi"))
+                    var pengumuman = Pengumuman(document.getString("judul"), document.getString("date"), document.getString("isi"))
                     listPengumuman.add(pengumuman)
                     count++
                     if(count > 1){
@@ -139,6 +139,14 @@ class HomeUser : AppCompatActivity() {
         textKosongGrup.isVisible = false
         var seeMore1 = findViewById<TextView>(R.id.textViewMore)
         var seeMore2 = findViewById<TextView>(R.id.textViewMore2)
+        var tvLogout = findViewById<TextView>(R.id.textViewLogout)
+        tvLogout.setOnClickListener {
+            val editor = sp.edit()
+            editor.putString("spRegister", null)
+            editor.apply()
+            val intent = Intent(this@HomeUser, Login::class.java)
+            startActivity(intent)
+        }
         var fabReq = findViewById<FloatingActionButton>(R.id.fabAccess)
         sp = getSharedPreferences("dataSP", MODE_PRIVATE)
         db.collection("tbPengumuman")
@@ -146,7 +154,7 @@ class HomeUser : AppCompatActivity() {
             .addOnSuccessListener { result ->
 
                 for (document in result) {
-                    var pengumuman = Pengumuman(document.getString("judul"), "general", document.getString("isi"))
+                    var pengumuman = Pengumuman(document.getString("judul"), document.getString("date"), document.getString("isi"))
                     filter.add(pengumuman)
 
 
@@ -171,28 +179,9 @@ class HomeUser : AppCompatActivity() {
                 SiapkanData()
                 val isiSP = sp.getString("spRegister", null)
                 fabReq.setOnClickListener {
-                    AlertDialog.Builder(this@HomeUser).setTitle("Request access as admin")
-                        .setMessage("Apakah ingin meminta akses menjadi admin?")
-                        .setPositiveButton(
-                            "REQUEST",
-                            DialogInterface.OnClickListener { dialogInterface, i ->
-                                var request = AdminAccessRequests(isiSP, "admin")
-                                isiSP?.let { it1 ->
-                                    db.collection("tbRequests")
-                                        .document(isiSP.toString())
-                                        .set(request)
-                                }
+                    val intent = Intent(this@HomeUser, AddRequest::class.java)
+                    startActivity(intent)
 
-                            }).setNegativeButton(
-                            "BATAL",
-                            DialogInterface.OnClickListener { dialogInterface, i ->
-                                Toast.makeText(
-                                    this@HomeUser,
-                                    "BATALKAN REQUEST",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-
-                            }).show()
                 }
         seeMore1.setOnClickListener {
             seeMore1.isVisible = false
@@ -202,7 +191,7 @@ class HomeUser : AppCompatActivity() {
                 .addOnSuccessListener { result ->
 
                     for (document in result) {
-                        var pengumuman = Pengumuman(document.getString("judul"), "general", document.getString("isi"))
+                        var pengumuman = Pengumuman(document.getString("judul"), document.getString("date"), document.getString("isi"))
                         listPengumuman.add(pengumuman)
 
 

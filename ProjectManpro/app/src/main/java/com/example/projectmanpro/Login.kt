@@ -1,6 +1,7 @@
 package com.example.projectmanpro
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,24 +11,38 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class Login : AppCompatActivity() {
     private lateinit var EditTextemail: TextInputEditText
     private lateinit var EditTextpassword: TextInputEditText
     private lateinit var buttonLogin: Button
     private lateinit var auth: FirebaseAuth
+    lateinit var sp: SharedPreferences
     private lateinit var progressBar : ProgressBar
     private lateinit var textView : TextView
+    var db = FirebaseFirestore.getInstance()
 
     public override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
-        //if(currentUser != null){
-           // val intent = Intent(applicationContext, HomeUser::class.java)
-           // startActivity(intent)
-           // finish()
-      //  }
+        val isiSP = sp.getString("spRegister", null)
+        val user = User("email", "password", "role")
+        if(currentUser != null && isiSP != null){
+            db.collection("tbUser").document(isiSP).get().addOnSuccessListener { result ->
+                user.email = result.getString("email")
+                user.password = result.getString("password")
+                user.role = result.getString("role")
+            }
+            if(user.role == "user" && ! user.email!!.contains("admin@peter.")){
+                val intent = Intent(this@Login, HomeUser::class.java)
+                startActivity(intent)
+            }else{
+                val intent = Intent(this@Login, MainAdmin::class.java)
+                startActivity(intent)
+            }
+        }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +50,7 @@ class Login : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         EditTextemail = findViewById(R.id.email)
         EditTextpassword = findViewById(R.id.password)
+        sp = getSharedPreferences("dataSP", MODE_PRIVATE)
         progressBar = findViewById(R.id.progressBar)
         textView = findViewById(R.id.registerNow)
         buttonLogin = findViewById(R.id.btn_login)
@@ -60,20 +76,30 @@ class Login : AppCompatActivity() {
                 .addOnCompleteListener() { task ->
                     progressBar.visibility = View.GONE
                     if (task.isSuccessful) {
-                        if(email.contains("@peter.")) {
-                            val intent = Intent(applicationContext, MainAdmin::class.java)
+                        val editor = sp.edit()
+                        editor.putString("spRegister", email)
+                        editor.apply()
+                        Toast.makeText(applicationContext, "Login Success", Toast.LENGTH_SHORT)
+                            .show()
+                        val user = User("email", "password", "role")
+                        db.collection("tbUser").document(email).get().addOnSuccessListener { result ->
+                            user.email = result.getString("email")
+                            user.password = result.getString("password")
+                            user.role = result.getString("role")
+
+                       }
+                        if(! email.contains("admin@peter.") && user.role == "user") {
+                            val intent = Intent(applicationContext,HomeUser::class.java)
                             startActivity(intent)
                             finish()
                         }else{
-                            val intent = Intent(applicationContext, HomeUser::class.java)
+                            val intent = Intent(applicationContext, MainAdmin::class.java)
                             startActivity(intent)
                             finish()
                         }
 
-                            Toast.makeText(applicationContext, "Login Success", Toast.LENGTH_SHORT)
-                                .show()
-                            val eIntent = Intent(this@Login, HomeUser::class.java)
-                            startActivity(eIntent)
+
+
 
                     } else {
 

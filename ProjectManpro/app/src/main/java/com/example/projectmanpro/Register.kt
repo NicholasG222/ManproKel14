@@ -22,31 +22,42 @@ class Register : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var progressBar : ProgressBar
     private lateinit var textView : TextView
-    private lateinit var db: FirebaseFirestore
+    private var db = FirebaseFirestore.getInstance()
     lateinit var sp: SharedPreferences
 
     public override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
-        //if(currentUser != null){
-           // val intent = Intent(applicationContext, MainActivity::class.java)
-           // startActivity(intent)
-         //   finish()
-        //}
+        val isiSP = sp.getString("spRegister", null)
+        val user = User("email", "password", "role")
+        if(currentUser != null && isiSP != null){
+           db.collection("tbUser").document(isiSP).get().addOnSuccessListener { result ->
+               user.email = result.getString("email")
+               user.password = result.getString("password")
+               user.role = result.getString("role")
+           }
+            if(user.role == "user" && ! user.email!!.contains("admin@peter.")){
+                val intent = Intent(this@Register, HomeUser::class.java)
+                startActivity(intent)
+            }else{
+                val intent = Intent(this@Register, MainAdmin::class.java)
+                startActivity(intent)
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
+        sp = getSharedPreferences("dataSP", MODE_PRIVATE)
         EditTextemail = findViewById(R.id.email)
         EditTextpassword = findViewById(R.id.password)
         progressBar = findViewById(R.id.progressBar)
         textView = findViewById(R.id.loginNow)
         buttonReg = findViewById(R.id.btn_register)
-        sp = getSharedPreferences("dataSP", MODE_PRIVATE)
+
 
         textView.setOnClickListener {
             val intent = Intent(this@Register, Login::class.java)
@@ -85,7 +96,7 @@ class Register : AppCompatActivity() {
                             user.email?.let { it1 ->
                                 db.collection("tbUser").document(email.toString()).set(user)
 
-                                if (email.contains("@peter.")) {
+                                if (email.contains("admin@peter.")) {
                                     val intent = Intent(applicationContext, MainAdmin::class.java)
                                     startActivity(intent)
                                     finish()

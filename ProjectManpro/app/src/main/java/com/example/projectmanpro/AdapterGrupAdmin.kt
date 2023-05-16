@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -18,7 +19,7 @@ class AdapterGrupAdmin(
         var kategori: TextView = itemView.findViewById(R.id.textViewKategori)
         var buttonDelete: Button = itemView.findViewById(R.id.buttonDelete)
         var buttonEdit: Button = itemView.findViewById(R.id.buttonEdit)
-
+        var foto: ImageView = itemView.findViewById(R.id.imageViewLogo)
     }
 
 
@@ -27,6 +28,7 @@ class AdapterGrupAdmin(
     interface OnItemClickCallback {
         fun pindahEdit(data : Grup)
         fun deleteGrup(data: Grup)
+        fun imageClicked(data: Grup)
     }
 
 
@@ -54,10 +56,14 @@ class AdapterGrupAdmin(
 
         holder.buttonDelete.setOnClickListener {
             onItemClickCallback.deleteGrup(listGrup[position])
+
         }
 
         holder.buttonEdit.setOnClickListener {
             onItemClickCallback.pindahEdit(listGrup[position])
+        }
+        holder.foto.setOnClickListener {
+            onItemClickCallback.imageClicked(listGrup[position])
         }
     }
 

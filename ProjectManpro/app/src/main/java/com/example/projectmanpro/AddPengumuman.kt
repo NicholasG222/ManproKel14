@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.projectmanpro.DateHelper.getCurrentDate
 import com.google.firebase.firestore.FirebaseFirestore
 
 
@@ -20,11 +21,11 @@ class AddPengumuman : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_pengumuman)
-
+        val date = getCurrentDate()
         val buttonTambah = findViewById<Button>(R.id.buttonAddAnnounce2)
         inputTitle = findViewById<EditText>(R.id.editTextTitle)
         inputContent = findViewById<EditText>(R.id.editTextContent)
-        inputGeneral = findViewById<EditText>(R.id.editTextGen)
+
 
 
 
@@ -34,11 +35,11 @@ class AddPengumuman : AppCompatActivity() {
 
 
         buttonTambah.setOnClickListener {
-            val announcement = Pengumuman(inputTitle.text.toString(),inputGeneral.text.toString(), inputContent.text.toString())
+            val announcement = Pengumuman(inputTitle.text.toString(),date, inputContent.text.toString())
             announcement.judul?.let { it1 -> db.collection("tbPengumuman").document(inputTitle.text.toString()).set(announcement)
                 .addOnSuccessListener {
                     inputTitle.setText("")
-                    inputGeneral.setText("")
+
                     inputContent.setText("")
 
                     Toast.makeText(this,"Simpan data berhasil", Toast.LENGTH_LONG).show()
@@ -48,7 +49,7 @@ class AddPengumuman : AppCompatActivity() {
                 }
             }
 
-            val eIntent = Intent(this@AddPengumuman, HomeUser::class.java)
+            val eIntent = Intent(this@AddPengumuman, MainAdmin::class.java)
             startActivity(eIntent)
 
         }

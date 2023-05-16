@@ -24,7 +24,7 @@ class AdapterPengumuman (
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         var pengumuman = listPengumuman[position]
         holder.judul.setText(pengumuman.judul)
-        holder.general.setText(pengumuman.general)
+        holder.general.setText(pengumuman.date)
         holder.isiPengumuman.setText(pengumuman.isi)
     }
 

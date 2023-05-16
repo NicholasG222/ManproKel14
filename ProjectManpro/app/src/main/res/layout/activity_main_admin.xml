@@ -28,7 +28,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:gravity="center"
-                android:text="Papan Pengumuman HimaInfra"
+                android:text="PPetraMation"
                 android:textSize="50px"
                 android:textAllCaps="true"
                 android:textAlignment="center"
@@ -38,6 +38,15 @@
             </TextView>
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textAllCaps="true"
+            android:autoLink="all"
+            android:text="Logout" />
 
         <TextView
             android:id="@+id/textView2"
@@ -57,11 +66,7 @@
             android:clickable="true"
             app:srcCompat="@drawable/ic_baseline_admin_panel_settings_24" />
 
-        <TextView
-            android:id="@+id/textViewAccess"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Access lists" />
+
 
         <Button
             android:id="@+id/buttonAddAnn"
