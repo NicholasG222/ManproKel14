@@ -8,6 +8,17 @@
         <item>Dosen luar biasa</item>
         <item>Staff</item>
         <item>Wakil kaprodi</item>
-        <item>Ketua HIMA</item>
+        <item>HIMA</item>
+        <item>Kaprodi</item>
+        <item>Koordinator skripsi</item>
+    </string-array>
+    <string-array name="group_category">
+        <item>HIMA</item>
+        <item>Kelas</item>
+        <item>Tugas Akhir</item>
+        <item>LEAP</item>
+        <item>Bimbingan TA</item>
+        <item>Laboratorium</item>
+
     </string-array>
 </resources>

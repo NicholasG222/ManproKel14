@@ -42,7 +42,13 @@ class AddRequest : AppCompatActivity() {
                 }else if(p2 == 6){
                     role = "Wakil kaprodi"
                 }else if(p2 == 7){
-                    role = "Ketua HIMA"
+                    role = "HIMA"
+                }
+                else if(p2 == 8){
+                    role = "Kaprodi"
+                }
+                else if(p2 == 9){
+                    role = "Koordinator skripsi"
                 }
             }
 

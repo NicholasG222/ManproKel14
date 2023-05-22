@@ -122,15 +122,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTitleG" />
 
-    <EditText
-        android:id="@+id/editTextCategoryG"
+    <Spinner
+        android:id="@+id/spinnerCategoryG"
         android:layout_width="259dp"
         android:layout_height="45dp"
         android:layout_marginTop="1dp"
+        android:spinnerMode="dropdown"
         android:ems="10"
         android:hint="Input category"
         android:inputType="textPersonName"
-        android:text=""
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCat" />

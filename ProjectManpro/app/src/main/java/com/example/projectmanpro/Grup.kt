@@ -6,6 +6,7 @@ import android.os.Parcelable
 data class Grup(
     var nama: String?,
     var kategori: String?
+
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),

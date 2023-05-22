@@ -6,6 +6,8 @@
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/drawable/ic_baseline_admin_panel_settings_24.xml" value="0.1" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.1" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.1" />
+        <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.122" />
+        <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.244" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/activity_accept_request.xml" value="0.2" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/activity_adapter_pengumuman_admin.xml" value="0.1" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/activity_add_group.xml" value="0.1" />
@@ -22,7 +24,7 @@
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/received_chat.xml" value="0.1" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/rv_group_admin.xml" value="0.2" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/rv_grup.xml" value="0.1" />
-        <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/rv_pengumuman.xml" value="0.2" />
+        <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/rv_pengumuman.xml" value="0.1" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/rv_pengumuman_admin.xml" value="0.1" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/rv_request.xml" value="0.1" />
         <entry key="..\:/Sem 6/ManPro/ProjectManpro/app/src/main/res/layout/splash_screem.xml" value="0.2" />

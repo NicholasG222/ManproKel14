@@ -41,7 +41,7 @@ class HomeUser : AppCompatActivity() {
             .addOnSuccessListener { result ->
                 var count = 0
                 for (document in result) {
-                    var pengumuman = Pengumuman(document.getString("judul"), document.getString("date"), document.getString("isi"))
+                    var pengumuman = Pengumuman(document.getString("image"),document.getString("judul"), document.getString("date"), document.getString("isi"))
                     listPengumuman.add(pengumuman)
                     count++
                     if(count > 1){
@@ -50,7 +50,7 @@ class HomeUser : AppCompatActivity() {
 
                 }
                 rvPengumuman.layoutManager = LinearLayoutManager(this)
-                rvPengumuman.adapter = AdapterPengumuman(listPengumuman)
+                rvPengumuman.adapter = AdapterPengumuman(listPengumuman, this)
             }
 
         db.collection("tbGrup")
@@ -71,7 +71,10 @@ class HomeUser : AppCompatActivity() {
                 rvGrup.adapter = adapterG
                 adapterG.setOnItemClickCallback(object: AdapterGrup.OnItemClickCallback{
                     override fun imageClicked(data: Grup) {
-                        val eIntent = Intent(this@HomeUser, ChatGroupActivity::class.java)
+                        val eIntent = Intent(this@HomeUser, ChatGroupActivity::class.java).apply{
+                            putExtra(ChatGroupActivity.data, data.nama.toString())
+                            putExtra(ChatGroupActivity.data2, data.kategori.toString())
+                        }
                         startActivity(eIntent)
                     }
 
@@ -104,7 +107,7 @@ class HomeUser : AppCompatActivity() {
             var emptyGrup = arrayListOf<Grup>()
             if (filteredList.isEmpty() && filteredGrup.isEmpty()){
                 rvPengumuman.layoutManager = LinearLayoutManager(this)
-                rvPengumuman.adapter = AdapterPengumuman(emptyPengumuman)
+                rvPengumuman.adapter = AdapterPengumuman(emptyPengumuman, this)
                 rvGrup.layoutManager = LinearLayoutManager(this)
                 rvGrup.adapter = AdapterGrup(emptyGrup)
                 if(filteredList.isEmpty()) {
@@ -115,7 +118,7 @@ class HomeUser : AppCompatActivity() {
                 }
             } else {
                 rvPengumuman.layoutManager = LinearLayoutManager(this)
-                rvPengumuman.adapter = AdapterPengumuman(filteredList)
+                rvPengumuman.adapter = AdapterPengumuman(filteredList, this)
                 rvGrup.layoutManager = LinearLayoutManager(this)
                 rvGrup.adapter = AdapterGrup(filteredGrup)
                 textKosong.isVisible = false
@@ -143,6 +146,7 @@ class HomeUser : AppCompatActivity() {
         tvLogout.setOnClickListener {
             val editor = sp.edit()
             editor.putString("spRegister", null)
+            editor.putString("spRole", null)
             editor.apply()
             val intent = Intent(this@HomeUser, Login::class.java)
             startActivity(intent)
@@ -154,7 +158,7 @@ class HomeUser : AppCompatActivity() {
             .addOnSuccessListener { result ->
 
                 for (document in result) {
-                    var pengumuman = Pengumuman(document.getString("judul"), document.getString("date"), document.getString("isi"))
+                    var pengumuman = Pengumuman(document.getString("image"), document.getString("judul"), document.getString("date"), document.getString("isi"))
                     filter.add(pengumuman)
 
 
@@ -191,13 +195,13 @@ class HomeUser : AppCompatActivity() {
                 .addOnSuccessListener { result ->
 
                     for (document in result) {
-                        var pengumuman = Pengumuman(document.getString("judul"), document.getString("date"), document.getString("isi"))
+                        var pengumuman = Pengumuman(document.getString("image"),document.getString("judul"), document.getString("date"), document.getString("isi"))
                         listPengumuman.add(pengumuman)
 
 
                     }
                     rvPengumuman.layoutManager = LinearLayoutManager(this)
-                    rvPengumuman.adapter = AdapterPengumuman(listPengumuman)
+                    rvPengumuman.adapter = AdapterPengumuman(listPengumuman, this)
                 }
         }
 

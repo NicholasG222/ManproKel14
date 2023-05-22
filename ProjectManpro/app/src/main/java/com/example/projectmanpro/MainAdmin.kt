@@ -27,7 +27,7 @@ class MainAdmin : AppCompatActivity() {
     private lateinit var _kategori : MutableList<String>
     private var adapterG = AdapterGrupAdmin(listGrup)
     lateinit var sp: SharedPreferences
-    //  val sp = getSharedPreferences("data_SP", MODE_PRIVATE)
+
 
 
     private fun SiapkanData(){
@@ -36,7 +36,7 @@ class MainAdmin : AppCompatActivity() {
             .addOnSuccessListener { result ->
                 var count = 0
                 for (document in result) {
-                    var pengumuman = Pengumuman(document.getString("judul"), document.getString("date"), document.getString("isi"))
+                    var pengumuman = Pengumuman(document.getString("image"),document.getString("judul"), document.getString("date"), document.getString("isi"))
                     listPengumuman.add(pengumuman)
                     count++
                     if(count > 1){
@@ -45,7 +45,7 @@ class MainAdmin : AppCompatActivity() {
 
                 }
                 rvPengumuman.layoutManager = LinearLayoutManager(this)
-                rvPengumuman.adapter = AdapterPengumumanAdmin(listPengumuman)
+                rvPengumuman.adapter = AdapterPengumumanAdmin(listPengumuman, this)
             }
 
         db.collection("tbGrup")
@@ -89,15 +89,21 @@ class MainAdmin : AppCompatActivity() {
         var tvLogout = findViewById<TextView>(R.id.textViewLogout)
         tvLogout.setOnClickListener {
             val editor = sp.edit()
-            editor.putString("spRegister", null)
+            editor.clear()
             editor.apply()
             val intent = Intent(this@MainAdmin, Login::class.java)
             startActivity(intent)
         }
+        var role = sp.getString("spRole", null)
+
+        Log.d("bool", role.toString())
+
         val buttonAddP = findViewById<Button>(R.id.buttonAddAnn)
         val buttonAddG = findViewById<Button>(R.id.buttonAddGroup)
         var fabAccept = findViewById<FloatingActionButton>(R.id.fabAccept)
-
+        Log.d("bool", (role == "Super Admin").toString())
+        fabAccept.isVisible = role == "Super Admin"
+        buttonAddP.isVisible = role == "Super Admin" || role == "Kaprodi" || role == "Wakil kaprodi" || role == "Sekretaris" ||role == "Koordinator skripsi"
         fabAccept.setOnClickListener {
             val intent = Intent(this@MainAdmin, AcceptRequest::class.java)
             startActivity(intent)
@@ -132,13 +138,13 @@ class MainAdmin : AppCompatActivity() {
                 .addOnSuccessListener { result ->
 
                     for (document in result) {
-                        var pengumuman = Pengumuman(document.getString("judul"), "general", document.getString("isi"))
+                        var pengumuman = Pengumuman(document.getString("image"),document.getString("judul"), "general", document.getString("isi"))
                         listPengumuman.add(pengumuman)
 
 
                     }
                     rvPengumuman.layoutManager = LinearLayoutManager(this)
-                    rvPengumuman.adapter = AdapterPengumumanAdmin(listPengumuman)
+                    rvPengumuman.adapter = AdapterPengumumanAdmin(listPengumuman, this)
                 }
         }
 
@@ -201,6 +207,7 @@ class MainAdmin : AppCompatActivity() {
             override fun imageClicked(data: Grup) {
                 val eIntent = Intent(this@MainAdmin, ChatGroupActivity::class.java).apply{
                     putExtra(ChatGroupActivity.data, data.nama.toString())
+                    putExtra(ChatGroupActivity.data2, data.kategori.toString())
                 }
 
                 startActivity(eIntent)

@@ -37,11 +37,11 @@ class Register : AppCompatActivity() {
                user.password = result.getString("password")
                user.role = result.getString("role")
            }
-            if(user.role == "user" && ! user.email!!.contains("admin@peter.")){
-                val intent = Intent(this@Register, HomeUser::class.java)
+            if( user.role != "user"){
+                val intent = Intent(this@Register, MainAdmin::class.java)
                 startActivity(intent)
             }else{
-                val intent = Intent(this@Register, MainAdmin::class.java)
+                val intent = Intent(this@Register,HomeUser::class.java)
                 startActivity(intent)
             }
         }
@@ -84,34 +84,44 @@ class Register : AppCompatActivity() {
 
                     if (task.isSuccessful) {
                         Toast.makeText(
-                            this@Register, "Account Created.",
+                            this@Register, "Autentikasi berhasil",
                             Toast.LENGTH_SHORT
                         ).show()
                         if (task.isSuccessful) {
                             val editor = sp.edit()
-                            editor.putString("spRegister", email)
-                            editor.apply()
 
+                            editor.putString("spRegister", email)
                             val user = User(email, password, "user")
-                            user.email?.let { it1 ->
-                                db.collection("tbUser").document(email.toString()).set(user)
+
+
+
+
+
 
                                 if (email.contains("admin@peter.")) {
                                     val intent = Intent(applicationContext, MainAdmin::class.java)
+                                    user.role = "Super Admin"
+                                    editor.putString("spRole", user.role)
+                                    editor.apply()
+                                    db.collection("tbUser").document(email).set(user)
                                     startActivity(intent)
                                     finish()
                                 } else {
+
                                     val intent = Intent(applicationContext, HomeUser::class.java)
+                                    editor.putString("spRole", user.role)
+                                    db.collection("tbUser").document(email).set(user)
+                                    editor.apply()
                                     startActivity(intent)
                                     finish()
                                 }
                             }
-                        }
+
                         } else {
                             //may be kalo salah in ganti kembali jadi baseContext
                             // If sign in fails, display a message to the user.
                             Toast.makeText(
-                                this@Register, "Authentication failed.",
+                                this@Register, "Autentikasi gagal",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }

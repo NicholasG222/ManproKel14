@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
@@ -28,18 +29,20 @@ class Login : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         val isiSP = sp.getString("spRegister", null)
+        val isiRole = sp.getString("spRole", null)
+
         val user = User("email", "password", "role")
-        if(currentUser != null && isiSP != null){
+        if(currentUser != null && isiSP != null && isiRole != null){
             db.collection("tbUser").document(isiSP).get().addOnSuccessListener { result ->
                 user.email = result.getString("email")
                 user.password = result.getString("password")
                 user.role = result.getString("role")
             }
-            if(user.role == "user" && ! user.email!!.contains("admin@peter.")){
-                val intent = Intent(this@Login, HomeUser::class.java)
+            if( user.role != "user"){
+                val intent = Intent(this@Login, MainAdmin::class.java)
                 startActivity(intent)
             }else{
-                val intent = Intent(this@Login, MainAdmin::class.java)
+                val intent = Intent(this@Login,HomeUser::class.java)
                 startActivity(intent)
             }
         }
@@ -77,26 +80,30 @@ class Login : AppCompatActivity() {
                     progressBar.visibility = View.GONE
                     if (task.isSuccessful) {
                         val editor = sp.edit()
-                        editor.putString("spRegister", email)
-                        editor.apply()
-                        Toast.makeText(applicationContext, "Login Success", Toast.LENGTH_SHORT)
+
+                        Toast.makeText(applicationContext, "Login berhasil", Toast.LENGTH_SHORT)
                             .show()
                         val user = User("email", "password", "role")
                         db.collection("tbUser").document(email).get().addOnSuccessListener { result ->
                             user.email = result.getString("email")
                             user.password = result.getString("password")
                             user.role = result.getString("role")
+                            editor.putString("spRegister", email)
+                            editor.putString("spRole", user.role)
 
+                            editor.apply()
+                            if(user.role != "user") {
+                                val intent = Intent(applicationContext,MainAdmin::class.java)
+                                startActivity(intent)
+                                finish()
+                            }else{
+                                val intent = Intent(applicationContext, HomeUser::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
                        }
-                        if(! email.contains("admin@peter.") && user.role == "user") {
-                            val intent = Intent(applicationContext,HomeUser::class.java)
-                            startActivity(intent)
-                            finish()
-                        }else{
-                            val intent = Intent(applicationContext, MainAdmin::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
+
+
 
 
 
