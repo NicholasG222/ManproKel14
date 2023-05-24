@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -18,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 
 class MainAdmin : AppCompatActivity() {
+    private lateinit var searchView: SearchView
     val db = FirebaseFirestore.getInstance();
     private var listPengumuman = arrayListOf<Pengumuman>()
     private var listGrup = arrayListOf<Grup>()
@@ -25,6 +27,10 @@ class MainAdmin : AppCompatActivity() {
     private lateinit var rvGrup: RecyclerView
     private lateinit var _nama : MutableList<String>
     private lateinit var _kategori : MutableList<String>
+    private var filter = arrayListOf<Pengumuman>()
+    private var filterGrup = arrayListOf<Grup>()
+    private lateinit var textKosong: TextView
+    private lateinit var textKosongGrup: TextView
     private var adapterG = AdapterGrupAdmin(listGrup)
     lateinit var sp: SharedPreferences
 
@@ -68,20 +74,71 @@ class MainAdmin : AppCompatActivity() {
 
 
     }
+    private fun filterList(query : String?){
+        textKosong = findViewById(R.id.textViewKosongAdmin)
+        textKosongGrup = findViewById(R.id.textViewKosongGrupAdmin)
+
+
+        if (query != null){
+            val filteredList = arrayListOf<Pengumuman>()
+            val filteredGrup = arrayListOf<Grup>()
+
+            for (i in filter){
+                if (i.judul!!.lowercase().contains(query) || i.isi!!.lowercase().contains(query)){
+                    filteredList.add(i)
+                }
+            }
+
+            for (j in filterGrup){
+                if (j.nama!!.lowercase().contains(query) || j.kategori!!.lowercase().contains(query)){
+                    filteredGrup.add(j)
+                }
+            }
+            var emptyPengumuman = arrayListOf<Pengumuman>()
+            var emptyGrup = arrayListOf<Grup>()
+            if (filteredList.isEmpty() && filteredGrup.isEmpty()){
+                rvPengumuman.layoutManager = LinearLayoutManager(this)
+                rvPengumuman.adapter = AdapterPengumuman(emptyPengumuman, this)
+                rvGrup.layoutManager = LinearLayoutManager(this)
+                rvGrup.adapter = AdapterGrup(emptyGrup)
+                if(filteredList.isEmpty()) {
+                    textKosong.isVisible = true
+                }
+                if(filteredGrup.isEmpty()) {
+                    textKosongGrup.isVisible = true
+                }
+            } else {
+                rvPengumuman.layoutManager = LinearLayoutManager(this)
+                rvPengumuman.adapter = AdapterPengumuman(filteredList, this)
+                rvGrup.layoutManager = LinearLayoutManager(this)
+                rvGrup.adapter = AdapterGrup(filteredGrup)
+                textKosong.isVisible = false
+                textKosongGrup.isVisible = false
+            }
+        }
+
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main_admin)
+
+        textKosong = findViewById(R.id.textViewKosongAdmin)
+        textKosongGrup = findViewById(R.id.textViewKosongGrupAdmin)
+        searchView = findViewById(R.id.searchButton)
         sp = getSharedPreferences("dataSP", MODE_PRIVATE)
         rvPengumuman = findViewById(R.id.rvPengumuman)
         rvGrup = findViewById(R.id.rvGrup)
+        textKosong.isVisible = false
+        textKosongGrup.isVisible = false
         var listRequests = arrayListOf<AdminAccessRequests>()
 
 
         SiapkanData()
 
-       setCallbackG()
+       //setCallbackG()
 
         var seeMore1 = findViewById<TextView>(R.id.textViewMore)
         var seeMore2 = findViewById<TextView>(R.id.textViewMore2)
@@ -123,6 +180,40 @@ class MainAdmin : AppCompatActivity() {
 
         }
 
+        db.collection("tbPengumuman")
+            .get()
+            .addOnSuccessListener { result ->
+
+                for (document in result) {
+                    var pengumuman = Pengumuman(document.getString("image"), document.getString("judul"), document.getString("date"), document.getString("isi"))
+                    filter.add(pengumuman)
+
+
+                }
+//                    rvPengumuman.layoutManager = LinearLayoutManager(this)
+//                    rvPengumuman.adapter = AdapterPengumuman(listPengumuman)
+            }
+
+        db.collection("tbGrup")
+            .get()
+            .addOnSuccessListener { result ->
+
+                for (document in result) {
+                    var grup = Grup(document.getString("nama"), document.getString("kategori"))
+                    filterGrup.add(grup)
+
+
+                }
+//                    rvGrup.layoutManager = LinearLayoutManager(this)
+//                    rvGrup.adapter = AdapterGrup(listGrup)
+//                }
+                SiapkanData()
+                val isiSP = sp.getString("spRegister", null)
+//                fabReq.setOnClickListener {
+//                    val intent = Intent(this@MainAdmin, AddRequest::class.java)
+//                    startActivity(intent)
+//
+//                }
 
 
 
@@ -165,6 +256,25 @@ class MainAdmin : AppCompatActivity() {
                     rvGrup.adapter = AdapterGrupAdmin(listGrup)
                 }
         }
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(newText: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterList(newText)
+                seeMore1.isVisible = false
+                seeMore2.isVisible = false
+                if (newText != null) {
+                    if(newText.isEmpty()){
+                        seeMore1.isVisible = true
+                        seeMore2.isVisible = true
+                    }
+                }
+                return true
+            }
+        })
 
 
     }
@@ -218,4 +328,5 @@ class MainAdmin : AppCompatActivity() {
         }
         )
     }
+}
 }

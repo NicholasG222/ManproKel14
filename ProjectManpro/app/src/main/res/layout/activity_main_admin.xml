@@ -47,6 +47,11 @@
             android:textAllCaps="true"
             android:autoLink="all"
             android:text="Logout" />
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchButton"
+            android:queryHint="Search here"/>
 
         <TextView
             android:id="@+id/textView2"
@@ -58,6 +63,15 @@
             android:textStyle="bold"
 
             android:text="Pengumuman Informatika" />
+        <TextView
+            android:id="@+id/textViewKosongAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30px"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:text="Data tidak ditemukan" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAccept"
@@ -99,6 +113,15 @@
             android:textStyle="bold"
             android:layout_marginTop="100px"
             android:text="Grup Pengumuman" />
+        <TextView
+            android:id="@+id/textViewKosongGrupAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30px"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:text="Data tidak ditemukan" />
 
         <Button
             android:id="@+id/buttonAddGroup"
