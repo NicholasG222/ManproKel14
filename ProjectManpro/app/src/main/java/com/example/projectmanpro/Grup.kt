@@ -4,19 +4,26 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Grup(
+    var gambar: String?,
     var nama: String?,
-    var kategori: String?
+    var kategori: String?,
+    var createdBy: String?
 
 ): Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
         parcel.readString(),
         parcel.readString()
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(gambar)
         parcel.writeString(nama)
         parcel.writeString(kategori)
+        parcel.writeString(createdBy)
+
     }
 
     override fun describeContents(): Int {

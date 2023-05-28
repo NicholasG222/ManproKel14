@@ -17,8 +17,7 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlin.coroutines.coroutineContext
 
 class AdapterPengumuman (
-    private val listPengumuman: ArrayList<Pengumuman>,
-    val context: Context
+    private val listPengumuman: ArrayList<Pengumuman>
 ): RecyclerView.Adapter<AdapterPengumuman.ListViewHolder>()
 {
     inner class ListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -42,7 +41,7 @@ class AdapterPengumuman (
         imageRef.getBytes(100*100*1024).addOnSuccessListener {
             val bitmap =  BitmapFactory.decodeByteArray(it, 0, it.size)
             holder.imagePicker.setImageBitmap(bitmap)
-            Log.d("success", "ok")
+
         }
     }
 

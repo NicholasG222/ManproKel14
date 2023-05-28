@@ -28,7 +28,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:gravity="center"
-                android:text="PPetraMation"
+                android:text="PetraMation"
                 android:textSize="50px"
                 android:textAllCaps="true"
                 android:textAlignment="center"
@@ -47,6 +47,13 @@
             android:textAllCaps="true"
             android:autoLink="all"
             android:text="Logout" />
+
+        <TextView
+            android:id="@+id/textViewEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log in sebagai: " />
+
         <SearchView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -38,6 +38,7 @@
             android:id="@+id/crossButton"
             android:layout_marginRight="5dp"
             android:backgroundTint="#ef0000"
+            android:alpha="0.5"
             app:srcCompat="@drawable/ic_baseline_close_24"
             android:layout_height="wrap_content">
 
@@ -47,6 +48,7 @@
         android:id="@+id/checkButton"
         android:backgroundTint="#90EE90"
         android:layout_marginRight="5dp"
+        android:alpha="0.5"
         app:srcCompat="@drawable/ic_baseline_check_24"
         android:layout_height="wrap_content">
 

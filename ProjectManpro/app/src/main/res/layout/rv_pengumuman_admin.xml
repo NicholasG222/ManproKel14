@@ -16,7 +16,6 @@
         android:text="Judul"
         android:textSize="20dp"
         android:textAllCaps="true"
-
         android:textStyle="bold"
 
         />
@@ -37,4 +36,32 @@
         android:layout_marginBottom="50px"
         android:text="Isi pengumuman"
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonDelAnn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:layout_marginLeft="10mm"
+            android:backgroundTint="#FF0000"
+            >
+        </Button>
+
+        <Button
+            android:id="@+id/buttonEditAnn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="edit"
+            android:backgroundTint="#FFFF00"
+            android:layout_marginLeft="15mm">
+
+        </Button>
+
+    </LinearLayout>
+
 </LinearLayout>

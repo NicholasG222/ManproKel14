@@ -1,5 +1,7 @@
 package com.example.projectmanpro
 
+import android.graphics.BitmapFactory
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.storage.FirebaseStorage
 
 class AdapterGrupAdmin(
 
@@ -53,6 +56,12 @@ class AdapterGrupAdmin(
         var grup =listGrup[position]
         holder.nama.setText(grup.nama)
         holder.kategori.setText(grup.kategori)
+        val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(grup.gambar!!)
+        imageRef.getBytes(100*100*1024).addOnSuccessListener {
+            val bitmap =  BitmapFactory.decodeByteArray(it, 0, it.size)
+            holder.foto.setImageBitmap(bitmap)
+
+        }
 
         holder.buttonDelete.setOnClickListener {
             onItemClickCallback.deleteGrup(listGrup[position])

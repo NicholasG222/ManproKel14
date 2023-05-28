@@ -30,6 +30,7 @@ class Login : AppCompatActivity() {
         val currentUser = auth.currentUser
         val isiSP = sp.getString("spRegister", null)
         val isiRole = sp.getString("spRole", null)
+        Log.d("debugg", isiRole.toString())
 
         val user = User("email", "password", "role")
         if(currentUser != null && isiSP != null && isiRole != null){
@@ -90,6 +91,7 @@ class Login : AppCompatActivity() {
                             user.role = result.getString("role")
                             editor.putString("spRegister", email)
                             editor.putString("spRole", user.role)
+
 
                             editor.apply()
                             if(user.role != "user") {

@@ -34,6 +34,7 @@ class HomeUser : AppCompatActivity() {
     private lateinit var textKosong: TextView
     private lateinit var textKosongGrup: TextView
     lateinit var sp: SharedPreferences
+    private var adapterG = AdapterGrup(listGrup)
 
     private fun SiapkanData(){
         db.collection("tbPengumuman")
@@ -50,7 +51,7 @@ class HomeUser : AppCompatActivity() {
 
                 }
                 rvPengumuman.layoutManager = LinearLayoutManager(this)
-                rvPengumuman.adapter = AdapterPengumuman(listPengumuman, this)
+                rvPengumuman.adapter = AdapterPengumuman(listPengumuman)
             }
 
         db.collection("tbGrup")
@@ -58,7 +59,8 @@ class HomeUser : AppCompatActivity() {
             .addOnSuccessListener { result ->
                 var count = 0
                 for (document in result) {
-                    var grup = Grup(document.getString("nama"), document.getString("kategori"))
+                    var grup = Grup(document.getString("gambar"),document.getString("nama"), document.getString("kategori"),
+                        document.getString("createdBy"))
                     listGrup.add(grup)
                     count++
                     if(count > 1){
@@ -69,6 +71,7 @@ class HomeUser : AppCompatActivity() {
                 rvGrup.layoutManager = LinearLayoutManager(this)
                 val adapterG = AdapterGrup(listGrup)
                 rvGrup.adapter = adapterG
+                setCallbackG()
                 adapterG.setOnItemClickCallback(object: AdapterGrup.OnItemClickCallback{
                     override fun imageClicked(data: Grup) {
                         val eIntent = Intent(this@HomeUser, ChatGroupActivity::class.java).apply{
@@ -107,7 +110,7 @@ class HomeUser : AppCompatActivity() {
             var emptyGrup = arrayListOf<Grup>()
             if (filteredList.isEmpty() && filteredGrup.isEmpty()){
                 rvPengumuman.layoutManager = LinearLayoutManager(this)
-                rvPengumuman.adapter = AdapterPengumuman(emptyPengumuman, this)
+                rvPengumuman.adapter = AdapterPengumuman(emptyPengumuman)
                 rvGrup.layoutManager = LinearLayoutManager(this)
                 rvGrup.adapter = AdapterGrup(emptyGrup)
                 if(filteredList.isEmpty()) {
@@ -118,7 +121,7 @@ class HomeUser : AppCompatActivity() {
                 }
             } else {
                 rvPengumuman.layoutManager = LinearLayoutManager(this)
-                rvPengumuman.adapter = AdapterPengumuman(filteredList, this)
+                rvPengumuman.adapter = AdapterPengumuman(filteredList)
                 rvGrup.layoutManager = LinearLayoutManager(this)
                 rvGrup.adapter = AdapterGrup(filteredGrup)
                 textKosong.isVisible = false
@@ -137,6 +140,7 @@ class HomeUser : AppCompatActivity() {
 
         searchView = findViewById(R.id.search)
         rvPengumuman = findViewById(R.id.rvPengumuman)
+        var textEmail = findViewById<TextView>(R.id.textViewEmail)
         rvGrup = findViewById(R.id.rvGrup)
         textKosong.isVisible = false
         textKosongGrup.isVisible = false
@@ -153,18 +157,24 @@ class HomeUser : AppCompatActivity() {
         }
         var fabReq = findViewById<FloatingActionButton>(R.id.fabAccess)
         sp = getSharedPreferences("dataSP", MODE_PRIVATE)
+        var email = sp.getString("spRegister", null)
+        textEmail.setText("Log in sebagai: ${email}")
         db.collection("tbPengumuman")
             .get()
             .addOnSuccessListener { result ->
 
                 for (document in result) {
-                    var pengumuman = Pengumuman(document.getString("image"), document.getString("judul"), document.getString("date"), document.getString("isi"))
+                    var pengumuman = Pengumuman(
+                        document.getString("image"),
+                        document.getString("judul"),
+                        document.getString("date"),
+                        document.getString("isi")
+                    )
                     filter.add(pengumuman)
 
 
                 }
-//                    rvPengumuman.layoutManager = LinearLayoutManager(this)
-//                    rvPengumuman.adapter = AdapterPengumuman(listPengumuman)
+
             }
 
         db.collection("tbGrup")
@@ -172,14 +182,17 @@ class HomeUser : AppCompatActivity() {
             .addOnSuccessListener { result ->
 
                 for (document in result) {
-                    var grup = Grup(document.getString("nama"), document.getString("kategori"))
+                    var grup = Grup(
+                        document.getString("gambar"),
+                        document.getString("nama"),
+                        document.getString("kategori"),
+                        document.getString("createdBy")
+                    )
                     filterGrup.add(grup)
 
 
                 }
-//                    rvGrup.layoutManager = LinearLayoutManager(this)
-//                    rvGrup.adapter = AdapterGrup(listGrup)
-//                }
+
                 SiapkanData()
                 val isiSP = sp.getString("spRegister", null)
                 fabReq.setOnClickListener {
@@ -187,54 +200,56 @@ class HomeUser : AppCompatActivity() {
                     startActivity(intent)
 
                 }
-        seeMore1.setOnClickListener {
-            seeMore1.isVisible = false
-            listPengumuman = arrayListOf<Pengumuman>()
-            db.collection("tbPengumuman")
-                .get()
-                .addOnSuccessListener { result ->
+                seeMore1.setOnClickListener {
+                    seeMore1.isVisible = false
+                    listPengumuman = arrayListOf<Pengumuman>()
+                    db.collection("tbPengumuman")
+                        .get()
+                        .addOnSuccessListener { result ->
 
-                    for (document in result) {
-                        var pengumuman = Pengumuman(document.getString("image"),document.getString("judul"), document.getString("date"), document.getString("isi"))
-                        listPengumuman.add(pengumuman)
-
-
-                    }
-                    rvPengumuman.layoutManager = LinearLayoutManager(this)
-                    rvPengumuman.adapter = AdapterPengumuman(listPengumuman, this)
-                }
-        }
-
-        seeMore2.setOnClickListener {
-            seeMore2.isVisible = false
-            listGrup = arrayListOf<Grup>()
-            db.collection("tbGrup")
-                .get()
-                .addOnSuccessListener { result ->
-
-                    for (document in result) {
-                        var grup = Grup(document.getString("nama"), document.getString("kategori"))
-                        listGrup.add(grup)
+                            for (document in result) {
+                                var pengumuman = Pengumuman(
+                                    document.getString("image"),
+                                    document.getString("judul"),
+                                    document.getString("date"),
+                                    document.getString("isi")
+                                )
+                                listPengumuman.add(pengumuman)
 
 
-                    }
-                    rvGrup.layoutManager = LinearLayoutManager(this)
-                    val adapterG = AdapterGrup(listGrup)
-                    rvGrup.adapter = adapterG
-                    adapterG.setOnItemClickCallback(object: AdapterGrup.OnItemClickCallback{
-                        override fun imageClicked(data: Grup) {
-                            val eIntent = Intent(this@HomeUser, ChatGroupActivity::class.java).apply{
-                                putExtra(ChatGroupActivity.data, data.nama.toString())
                             }
-
-                            startActivity(eIntent)
+                            rvPengumuman.layoutManager = LinearLayoutManager(this)
+                            rvPengumuman.adapter = AdapterPengumuman(listPengumuman)
                         }
-
-                    })
                 }
-        }
 
-                searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+                seeMore2.setOnClickListener {
+                    seeMore2.isVisible = false
+                    listGrup = arrayListOf<Grup>()
+                    db.collection("tbGrup")
+                        .get()
+                        .addOnSuccessListener { result ->
+
+                            for (document in result) {
+                                var grup = Grup(
+                                    document.getString("gambar"),
+                                    document.getString("nama"),
+                                    document.getString("kategori"),
+                                    document.getString("createdBy")
+                                )
+                                listGrup.add(grup)
+
+
+                            }
+                            rvGrup.layoutManager = LinearLayoutManager(this)
+
+                            rvGrup.adapter = adapterG
+                            setCallbackG()
+
+                        }
+                }
+
+                searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(newText: String?): Boolean {
                         return false
                     }
@@ -244,7 +259,7 @@ class HomeUser : AppCompatActivity() {
                         seeMore1.isVisible = false
                         seeMore2.isVisible = false
                         if (newText != null) {
-                            if(newText.isEmpty()){
+                            if (newText.isEmpty()) {
                                 seeMore1.isVisible = true
                                 seeMore2.isVisible = true
                             }
@@ -256,4 +271,17 @@ class HomeUser : AppCompatActivity() {
 
             }
     }
+        private fun setCallbackG(){
+            adapterG.setOnItemClickCallback(object: AdapterGrup.OnItemClickCallback{
+                override fun imageClicked(data: Grup) {
+                    val eIntent = Intent(this@HomeUser, ChatGroupActivity::class.java).apply{
+                        putExtra(ChatGroupActivity.data, data.nama.toString())
+                    }
+
+                    startActivity(eIntent)
+                }
+
+            })
+        }
+
 }

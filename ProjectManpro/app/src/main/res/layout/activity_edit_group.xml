@@ -68,12 +68,11 @@
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
         android:text="Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.195"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+       app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/buttonAddGroup2"
@@ -81,10 +80,9 @@
         android:layout_height="55dp"
 
         android:backgroundTint="#0000FF"
-        android:layout_marginTop="44dp"
         android:text="Edit"
-        app:layout_constraintTop_toBottomOf="@id/editTextCategoryG"
         app:layout_constraintBottom_toTopOf="@id/buttonBack"
+        app:layout_constraintTop_toBottomOf="@id/editTextTitleG"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
@@ -99,40 +97,6 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Change Photo"
-        android:backgroundTint="#0000FF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <TextView
-        android:id="@+id/textViewCat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Category"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.218"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTitleG" />
-
-    <EditText
-        android:id="@+id/editTextCategoryG"
-        android:layout_width="259dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="1dp"
-        android:ems="10"
-        android:hint="Input category"
-        android:inputType="textPersonName"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCat" />
 
     <Button
         android:id="@+id/buttonBack"

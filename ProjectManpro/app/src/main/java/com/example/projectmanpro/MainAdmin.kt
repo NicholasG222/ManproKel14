@@ -32,6 +32,7 @@ class MainAdmin : AppCompatActivity() {
     private lateinit var textKosong: TextView
     private lateinit var textKosongGrup: TextView
     private var adapterG = AdapterGrupAdmin(listGrup)
+    private var adapterA = AdapterPengumumanAdmin(listPengumuman)
     lateinit var sp: SharedPreferences
 
 
@@ -45,13 +46,14 @@ class MainAdmin : AppCompatActivity() {
                     var pengumuman = Pengumuman(document.getString("image"),document.getString("judul"), document.getString("date"), document.getString("isi"))
                     listPengumuman.add(pengumuman)
                     count++
-                    if(count > 1){
+                    if(count > 2){
                         break
                     }
 
                 }
                 rvPengumuman.layoutManager = LinearLayoutManager(this)
-                rvPengumuman.adapter = AdapterPengumumanAdmin(listPengumuman, this)
+                rvPengumuman.adapter = adapterA
+                setCallbackA()
             }
 
         db.collection("tbGrup")
@@ -59,10 +61,10 @@ class MainAdmin : AppCompatActivity() {
             .addOnSuccessListener { result ->
                 var count = 0
                 for (document in result) {
-                    var grup = Grup(document.getString("nama"), document.getString("kategori"))
+                    var grup = Grup(document.getString("gambar"),document.getString("nama"), document.getString("kategori"), document.getString("createdBy"))
                     listGrup.add(grup)
                     count++
-                    if(count > 1){
+                    if(count > 2){
                         break
                     }
 
@@ -70,6 +72,7 @@ class MainAdmin : AppCompatActivity() {
                 rvGrup.layoutManager = LinearLayoutManager(this)
 
                 rvGrup.adapter =adapterG
+                setCallbackG()
             }
 
 
@@ -98,9 +101,10 @@ class MainAdmin : AppCompatActivity() {
             var emptyGrup = arrayListOf<Grup>()
             if (filteredList.isEmpty() && filteredGrup.isEmpty()){
                 rvPengumuman.layoutManager = LinearLayoutManager(this)
-                rvPengumuman.adapter = AdapterPengumuman(emptyPengumuman, this)
+                rvPengumuman.adapter = AdapterPengumuman(emptyPengumuman)
                 rvGrup.layoutManager = LinearLayoutManager(this)
                 rvGrup.adapter = AdapterGrup(emptyGrup)
+
                 if(filteredList.isEmpty()) {
                     textKosong.isVisible = true
                 }
@@ -109,9 +113,11 @@ class MainAdmin : AppCompatActivity() {
                 }
             } else {
                 rvPengumuman.layoutManager = LinearLayoutManager(this)
-                rvPengumuman.adapter = AdapterPengumuman(filteredList, this)
+                rvPengumuman.adapter = adapterA
+                setCallbackA()
                 rvGrup.layoutManager = LinearLayoutManager(this)
-                rvGrup.adapter = AdapterGrup(filteredGrup)
+                rvGrup.adapter = adapterG
+                setCallbackG()
                 textKosong.isVisible = false
                 textKosongGrup.isVisible = false
             }
@@ -129,16 +135,18 @@ class MainAdmin : AppCompatActivity() {
         textKosongGrup = findViewById(R.id.textViewKosongGrupAdmin)
         searchView = findViewById(R.id.searchButton)
         sp = getSharedPreferences("dataSP", MODE_PRIVATE)
+        var textEmail = findViewById<TextView>(R.id.textViewEmail)
         rvPengumuman = findViewById(R.id.rvPengumuman)
         rvGrup = findViewById(R.id.rvGrup)
         textKosong.isVisible = false
         textKosongGrup.isVisible = false
-        var listRequests = arrayListOf<AdminAccessRequests>()
+
 
 
         SiapkanData()
 
-       //setCallbackG()
+       setCallbackG()
+        setCallbackA()
 
         var seeMore1 = findViewById<TextView>(R.id.textViewMore)
         var seeMore2 = findViewById<TextView>(R.id.textViewMore2)
@@ -152,21 +160,48 @@ class MainAdmin : AppCompatActivity() {
             startActivity(intent)
         }
         var role = sp.getString("spRole", null)
+        var email = sp.getString("spRegister", null)
+        textEmail.setText("Log in sebagai: ${email}")
 
-        Log.d("bool", role.toString())
+
 
         val buttonAddP = findViewById<Button>(R.id.buttonAddAnn)
         val buttonAddG = findViewById<Button>(R.id.buttonAddGroup)
         var fabAccept = findViewById<FloatingActionButton>(R.id.fabAccept)
-        Log.d("bool", (role == "Super Admin").toString())
-        fabAccept.isVisible = role == "Super Admin"
+
+        var arrayRole = arrayListOf<String>()
         buttonAddP.isVisible = role == "Super Admin" || role == "Kaprodi" || role == "Wakil kaprodi" || role == "Sekretaris" ||role == "Koordinator skripsi"
-        fabAccept.setOnClickListener {
-            val intent = Intent(this@MainAdmin, AcceptRequest::class.java)
-            startActivity(intent)
+        db.collection("tbDoubleRole").get()
+            .addOnSuccessListener { result ->
+                for (doc in result) {
+                    var email = doc.getString("email")
+                    var role = doc.getString("nama")
+                    if (email == email) {
+                        arrayRole.add(role!!)
+
+                    }
+
+                }
+               if(arrayRole.contains("Super Admin") || arrayRole.contains("Kaprodi") || arrayRole.contains("Sekretaris") ||
+                   arrayRole.contains("Wakil kaprodi") || arrayRole.contains("Koordinator skripsi")){
+                       buttonAddP.isVisible = true
+               }
+            }
+       if(role == "Super Admin") {
+           fabAccept.setOnClickListener {
+               val intent = Intent(this@MainAdmin, AcceptRequest::class.java)
+               startActivity(intent)
 
 
-        }
+           }
+       }else{
+           fabAccept.setOnClickListener {
+               val intent = Intent(this@MainAdmin, AddRequest::class.java)
+               startActivity(intent)
+
+
+           }
+       }
         buttonAddP.setOnClickListener {
 
             val eIntent = Intent(this@MainAdmin,AddPengumuman::class.java)
@@ -190,8 +225,7 @@ class MainAdmin : AppCompatActivity() {
 
 
                 }
-//                    rvPengumuman.layoutManager = LinearLayoutManager(this)
-//                    rvPengumuman.adapter = AdapterPengumuman(listPengumuman)
+
             }
 
         db.collection("tbGrup")
@@ -199,21 +233,21 @@ class MainAdmin : AppCompatActivity() {
             .addOnSuccessListener { result ->
 
                 for (document in result) {
-                    var grup = Grup(document.getString("nama"), document.getString("kategori"))
+                    var grup = Grup(
+                        document.getString("image"),
+                        document.getString("nama"),
+                        document.getString("kategori"),
+                        document.getString("createdBy")
+                    )
                     filterGrup.add(grup)
 
 
                 }
-//                    rvGrup.layoutManager = LinearLayoutManager(this)
-//                    rvGrup.adapter = AdapterGrup(listGrup)
-//                }
-                SiapkanData()
+
+
                 val isiSP = sp.getString("spRegister", null)
-//                fabReq.setOnClickListener {
-//                    val intent = Intent(this@MainAdmin, AddRequest::class.java)
-//                    startActivity(intent)
-//
-//                }
+            }
+
 
 
 
@@ -235,7 +269,8 @@ class MainAdmin : AppCompatActivity() {
 
                     }
                     rvPengumuman.layoutManager = LinearLayoutManager(this)
-                    rvPengumuman.adapter = AdapterPengumumanAdmin(listPengumuman, this)
+                    rvPengumuman.adapter = adapterA
+                    setCallbackA()
                 }
         }
 
@@ -247,13 +282,14 @@ class MainAdmin : AppCompatActivity() {
                 .addOnSuccessListener { result ->
 
                     for (document in result) {
-                        var grup = Grup(document.getString("nama"), document.getString("kategori"))
+                        var grup = Grup(document.getString("gambar"),document.getString("nama"), document.getString("kategori"), document.getString("createdBy"))
                         listGrup.add(grup)
 
 
                     }
                     rvGrup.layoutManager = LinearLayoutManager(this)
-                    rvGrup.adapter = AdapterGrupAdmin(listGrup)
+                    rvGrup.adapter = adapterG
+                    setCallbackG()
                 }
         }
 
@@ -278,6 +314,7 @@ class MainAdmin : AppCompatActivity() {
 
 
     }
+
     fun setCallbackG(){
         adapterG.setOnItemClickCallback(object : AdapterGrupAdmin.OnItemClickCallback{
 
@@ -291,7 +328,7 @@ class MainAdmin : AppCompatActivity() {
             }
 
             override fun deleteGrup(pos: Grup) {
-                AlertDialog.Builder(this@MainAdmin).setTitle("Request access as admin")
+                AlertDialog.Builder(this@MainAdmin).setTitle("Hapus grup")
                     .setMessage("Apakah Anda ingin menghapus grup?")
                     .setPositiveButton(
                         "HAPUS",
@@ -328,5 +365,49 @@ class MainAdmin : AppCompatActivity() {
         }
         )
     }
-}
+
+    fun setCallbackA() {
+        adapterA.setOnItemClickCallback(object :
+            AdapterPengumumanAdmin.OnItemClickCallback {
+            override fun onItemClicked(data: Pengumuman) {
+
+            }
+
+            override fun editAnn(data: Pengumuman) {
+                val eIntent = Intent(this@MainAdmin, EditPengumuman::class.java).apply {
+                    putExtra(EditPengumuman.data, data)
+                }
+                startActivity(eIntent)
+            }
+
+            override fun delAnn(data: Pengumuman) {
+                AlertDialog.Builder(this@MainAdmin).setTitle("Hapus pengumuman")
+                    .setMessage("Apakah Anda ingin menghapus pengumuman?")
+                    .setPositiveButton(
+                        "HAPUS",
+                        DialogInterface.OnClickListener { dialogInterface, i ->
+                            db.collection("tbPengumuman").document(data.judul!!).delete()
+                            listPengumuman.remove(data)
+                            adapterA.notifyDataSetChanged()
+
+
+                        }).setNegativeButton(
+                        "BATAL",
+                        DialogInterface.OnClickListener { dialogInterface, i ->
+                            Toast.makeText(
+                                this@MainAdmin,
+                                "BATAL",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                        }).show()
+            }
+
+
+        }
+        )
+    }
+
+
+
 }

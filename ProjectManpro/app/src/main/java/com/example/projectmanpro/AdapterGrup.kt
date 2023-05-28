@@ -1,11 +1,14 @@
 package com.example.projectmanpro
 
+import android.graphics.BitmapFactory
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.storage.FirebaseStorage
 
 class AdapterGrup(
 
@@ -37,6 +40,12 @@ class AdapterGrup(
             var pengumuman =listGrup[position]
             holder.nama.setText(pengumuman.nama)
             holder.kategori.setText(pengumuman.kategori)
+            val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(pengumuman.gambar!!)
+            imageRef.getBytes(100*100*1024).addOnSuccessListener {
+                val bitmap =  BitmapFactory.decodeByteArray(it, 0, it.size)
+                holder.foto.setImageBitmap(bitmap)
+                Log.d("success", "ok")
+            }
             holder.foto.setOnClickListener {
                 onItemClickCallback.imageClicked(listGrup[position])
             }
