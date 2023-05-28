@@ -7,6 +7,8 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -146,15 +148,6 @@ class HomeUser : AppCompatActivity() {
         textKosongGrup.isVisible = false
         var seeMore1 = findViewById<TextView>(R.id.textViewMore)
         var seeMore2 = findViewById<TextView>(R.id.textViewMore2)
-        var tvLogout = findViewById<TextView>(R.id.textViewLogout)
-        tvLogout.setOnClickListener {
-            val editor = sp.edit()
-            editor.putString("spRegister", null)
-            editor.putString("spRole", null)
-            editor.apply()
-            val intent = Intent(this@HomeUser, Login::class.java)
-            startActivity(intent)
-        }
         var fabReq = findViewById<FloatingActionButton>(R.id.fabAccess)
         sp = getSharedPreferences("dataSP", MODE_PRIVATE)
         var email = sp.getString("spRegister", null)
@@ -283,5 +276,29 @@ class HomeUser : AppCompatActivity() {
 
             })
         }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.home_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.logout -> {
+                val editor = sp.edit()
+                editor.putString("spRegister", null)
+                editor.putString("spRole", null)
+                editor.apply()
+                val intent = Intent(this@HomeUser, Login::class.java)
+                startActivity(intent)
+                return true
+            }
+            else -> {return false}
+        }
+
+
+        return super.onOptionsItemSelected(item)
+    }
+
 
 }

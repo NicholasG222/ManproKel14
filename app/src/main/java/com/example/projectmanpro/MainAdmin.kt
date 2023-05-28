@@ -6,6 +6,8 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.SearchView
 import android.widget.TextView
@@ -150,15 +152,6 @@ class MainAdmin : AppCompatActivity() {
 
         var seeMore1 = findViewById<TextView>(R.id.textViewMore)
         var seeMore2 = findViewById<TextView>(R.id.textViewMore2)
-
-        var tvLogout = findViewById<TextView>(R.id.textViewLogout)
-        tvLogout.setOnClickListener {
-            val editor = sp.edit()
-            editor.clear()
-            editor.apply()
-            val intent = Intent(this@MainAdmin, Login::class.java)
-            startActivity(intent)
-        }
         var role = sp.getString("spRole", null)
         var email = sp.getString("spRegister", null)
         textEmail.setText("Log in sebagai: ${email}")
@@ -406,6 +399,29 @@ class MainAdmin : AppCompatActivity() {
 
         }
         )
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.home_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.logout -> {
+                val editor = sp.edit()
+                editor.clear()
+                editor.apply()
+                val intent = Intent(this@MainAdmin, Login::class.java)
+                startActivity(intent)
+                return true
+            }
+            else -> {return false}
+        }
+
+
+        return super.onOptionsItemSelected(item)
     }
 
 

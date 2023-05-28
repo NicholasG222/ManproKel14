@@ -16,7 +16,6 @@
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/RoundCorner"
         android:src="@drawable/angkatan"/>
 
     <TextView
