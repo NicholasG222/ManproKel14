@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.projectmanpro">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/logo"
+        android:label="PetraMation"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Manpro"
+        android:theme="@style/Theme.ProjectManpro"
         tools:targetApi="31">
         <activity
-            android:name=".GroupActivity"
+            android:name=".AddRequest"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Register"
+            android:exported="false" />
+        <activity
+            android:name=".AcceptRequest"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +37,39 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AdapterPengumumanAdmin"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name=".MainAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false"
+            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name=".Register"
+            android:exported="false"
+            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name=".AddGroup"
+            android:exported="false" />
+        <activity
+            android:name=".EditPengumuman"
+            android:exported="false" />
+        <activity
+            android:name=".EditGroup"
+            android:exported="false" />
+        <activity
+            android:name=".AddPengumuman"
+            android:exported="false" />
+        <activity
+            android:name=".HomeUser"
+            android:exported="false" />
+        <activity
+            android:name=".ChatGroupActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

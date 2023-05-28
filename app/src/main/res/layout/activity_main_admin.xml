@@ -22,7 +22,7 @@
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/logo"
+                android:src="@drawable/ukp"
                 android:layout_marginRight="20dp"
                 ></ImageView>
             <TextView
@@ -52,20 +52,13 @@
             android:id="@+id/textViewEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Log in sebagai:" />
+            android:text="Log in sebagai: " />
 
         <SearchView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/search"
+            android:id="@+id/searchButton"
             android:queryHint="Search here"/>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabAccess"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            app:srcCompat="@drawable/ic_baseline_admin_panel_settings_24" />
 
         <TextView
             android:id="@+id/textView2"
@@ -77,11 +70,8 @@
             android:textStyle="bold"
 
             android:text="Pengumuman Informatika" />
-
-
-
         <TextView
-            android:id="@+id/textViewKosong"
+            android:id="@+id/textViewKosongAdmin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="30px"
@@ -89,6 +79,23 @@
             android:textAllCaps="true"
             android:textStyle="bold"
             android:text="Data tidak ditemukan" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAccept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_baseline_admin_panel_settings_24" />
+
+
+
+        <Button
+            android:id="@+id/buttonAddAnn"
+            android:layout_width="218dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:backgroundTint="#0000ff"
+            android:text="+ Add Announcement" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="wrap_content"
@@ -113,9 +120,8 @@
             android:textStyle="bold"
             android:layout_marginTop="100px"
             android:text="Grup Pengumuman" />
-
         <TextView
-            android:id="@+id/textViewKosongGrup"
+            android:id="@+id/textViewKosongGrupAdmin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="30px"
@@ -123,6 +129,14 @@
             android:textAllCaps="true"
             android:textStyle="bold"
             android:text="Data tidak ditemukan" />
+
+        <Button
+            android:id="@+id/buttonAddGroup"
+            android:layout_width="219dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:backgroundTint="#0000ff"
+            android:text="+ Add Group" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="wrap_content"
@@ -136,7 +150,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="See more>" />
-
-
     </LinearLayout>
 </ScrollView>
