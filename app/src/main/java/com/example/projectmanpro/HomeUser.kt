@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.MenuCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.w3c.dom.Text
 
@@ -148,7 +150,7 @@ class HomeUser : AppCompatActivity() {
         textKosongGrup.isVisible = false
         var seeMore1 = findViewById<TextView>(R.id.textViewMore)
         var seeMore2 = findViewById<TextView>(R.id.textViewMore2)
-        var fabReq = findViewById<FloatingActionButton>(R.id.fabAccess)
+//        var fabReq = findViewById<FloatingActionButton>(R.id.fabAccess)
         sp = getSharedPreferences("dataSP", MODE_PRIVATE)
         var email = sp.getString("spRegister", null)
         textEmail.setText("Log in sebagai: ${email}")
@@ -188,11 +190,13 @@ class HomeUser : AppCompatActivity() {
 
                 SiapkanData()
                 val isiSP = sp.getString("spRegister", null)
-                fabReq.setOnClickListener {
-                    val intent = Intent(this@HomeUser, AddRequest::class.java)
-                    startActivity(intent)
 
-                }
+//                fabReq.setOnClickListener {
+//                    val intent = Intent(this@HomeUser, AddRequest::class.java)
+//                    startActivity(intent)
+//
+//                }
+
                 seeMore1.setOnClickListener {
                     seeMore1.isVisible = false
                     listPengumuman = arrayListOf<Pengumuman>()
@@ -293,6 +297,13 @@ class HomeUser : AppCompatActivity() {
                 startActivity(intent)
                 return true
             }
+
+            R.id.fabAccessMenu -> {
+                val intent = Intent(this@HomeUser, AddRequest::class.java)
+                startActivity(intent)
+                return true
+            }
+
             else -> {return false}
         }
 

@@ -12,8 +12,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-
         <TextView
             android:id="@+id/textViewEmail"
             android:layout_width="wrap_content"
@@ -26,12 +24,12 @@
             android:id="@+id/search"
             android:queryHint="Search here"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabAccess"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            app:srcCompat="@drawable/ic_baseline_admin_panel_settings_24" />
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/fabAccess"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:clickable="true"-->
+<!--            app:srcCompat="@drawable/ic_baseline_admin_panel_settings_24" />-->
 
         <TextView
             android:id="@+id/textView2"
