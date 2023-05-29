@@ -184,15 +184,11 @@ class MainAdmin : AppCompatActivity() {
            fabAccept.setOnClickListener {
                val intent = Intent(this@MainAdmin, AcceptRequest::class.java)
                startActivity(intent)
-
-
            }
        }else{
            fabAccept.setOnClickListener {
                val intent = Intent(this@MainAdmin, AddRequest::class.java)
                startActivity(intent)
-
-
            }
        }
         buttonAddP.setOnClickListener {
@@ -240,12 +236,6 @@ class MainAdmin : AppCompatActivity() {
 
                 val isiSP = sp.getString("spRegister", null)
             }
-
-
-
-
-
-
 
 
         seeMore1.setOnClickListener {
@@ -403,7 +393,7 @@ class MainAdmin : AppCompatActivity() {
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.home_menu, menu)
+        menuInflater.inflate(R.menu.admin_menu, menu)
         return true
     }
 

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".HomeUser">
 
     <LinearLayout
@@ -58,9 +57,9 @@
 
         <Button
             android:id="@+id/buttonAddAnn"
-            android:layout_width="218dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
+            android:layout_marginHorizontal="40dp"
             android:backgroundTint="#0000ff"
             android:text="+ Add Announcement" />
 
@@ -72,22 +71,24 @@
         <TextView
             android:id="@+id/textViewMore"
             android:textSize="50px"
-            android:textColor="#add8ff"
+            android:textColor="#3a3afc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="See more>" />
+            android:text="See more >>"
+            android:paddingHorizontal="20dp"/>
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="50px"
-            android:gravity="center"
-            android:textAllCaps="true"
-            android:textStyle="bold"
             android:layout_marginTop="100px"
+            android:gravity="center"
             android:text="Grup Pengumuman"
-            android:textColor="@color/black"/>
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="50px"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/textViewKosongGrupAdmin"
             android:layout_width="match_parent"
@@ -100,11 +101,11 @@
 
         <Button
             android:id="@+id/buttonAddGroup"
-            android:layout_width="219dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
             android:backgroundTint="#0000ff"
-            android:text="+ Add Group" />
+            android:text="+ Add Group"
+            android:layout_marginHorizontal="40dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -114,9 +115,10 @@
         <TextView
             android:id="@+id/textViewMore2"
             android:textSize="50px"
-            android:textColor="#add8ff"
+            android:textColor="#3a3afc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="See more>" />
+            android:text="See more >>"
+            android:paddingHorizontal="20dp"/>
     </LinearLayout>
 </ScrollView>

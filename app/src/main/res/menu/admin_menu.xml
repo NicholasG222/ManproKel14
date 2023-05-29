@@ -2,13 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/add"
+        android:id="@+id/logout"
         android:title="Logout">
-    </item>
-
-    <item
-        android:id="@+id/toAdmin"
-        android:title="Go to Admin Page">
     </item>
 
 </menu>

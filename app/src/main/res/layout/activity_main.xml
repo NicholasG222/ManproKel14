@@ -71,7 +71,8 @@
             android:textColor="#3a3afc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="See more>" />
+            android:text="See more >>"
+            android:paddingHorizontal="20dp"/>
 
         <TextView
             android:id="@+id/textView3"
@@ -106,7 +107,8 @@
             android:textColor="#3a3afc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="See more>" />
+            android:text="See more >>"
+            android:paddingHorizontal="20dp"/>
 
 
     </LinearLayout>
