@@ -37,7 +37,7 @@
             android:gravity="center"
             android:textAllCaps="true"
             android:textStyle="bold"
-
+            android:textColor="@color/black"
             android:text="Pengumuman Informatika" />
         <TextView
             android:id="@+id/textViewKosongAdmin"
@@ -56,8 +56,6 @@
             android:clickable="true"
             app:srcCompat="@drawable/ic_baseline_admin_panel_settings_24" />
 
-
-
         <Button
             android:id="@+id/buttonAddAnn"
             android:layout_width="218dp"
@@ -67,7 +65,7 @@
             android:text="+ Add Announcement" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:id="@+id/rvPengumuman"
             android:layout_height="wrap_content" />
 
@@ -88,7 +86,8 @@
             android:textAllCaps="true"
             android:textStyle="bold"
             android:layout_marginTop="100px"
-            android:text="Grup Pengumuman" />
+            android:text="Grup Pengumuman"
+            android:textColor="@color/black"/>
         <TextView
             android:id="@+id/textViewKosongGrupAdmin"
             android:layout_width="match_parent"
@@ -108,7 +107,7 @@
             android:text="+ Add Group" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:id="@+id/rvGrup"
             android:layout_height="wrap_content" />
 
