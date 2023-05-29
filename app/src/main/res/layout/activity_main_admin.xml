@@ -19,10 +19,15 @@
             android:text="Log in sebagai: " />
 
         <SearchView
+            android:id="@+id/searchButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/searchButton"
-            android:queryHint="Search here"/>
+            android:queryHint="Search here"
+            android:iconifiedByDefault="false"
+            android:background="@drawable/email_et"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"/>
 
         <TextView
             android:id="@+id/textView2"

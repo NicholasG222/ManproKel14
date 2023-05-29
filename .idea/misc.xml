@@ -10,12 +10,13 @@
         <entry key="..\:/ManproKel14/app/src/main/res/layout/activity_add_request.xml" value="0.3333333333333333" />
         <entry key="..\:/ManproKel14/app/src/main/res/layout/activity_login.xml" value="0.17552083333333332" />
         <entry key="..\:/ManproKel14/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/ManproKel14/app/src/main/res/layout/activity_main_admin.xml" value="0.17552083333333332" />
+        <entry key="..\:/ManproKel14/app/src/main/res/layout/activity_main_admin.xml" value="0.22" />
         <entry key="..\:/ManproKel14/app/src/main/res/layout/activity_register.xml" value="0.17552083333333332" />
         <entry key="..\:/ManproKel14/app/src/main/res/layout/list_item.xml" value="0.17552083333333332" />
         <entry key="..\:/ManproKel14/app/src/main/res/layout/rv_group_admin.xml" value="0.17552083333333332" />
-        <entry key="..\:/ManproKel14/app/src/main/res/layout/rv_grup.xml" value="0.17552083333333332" />
+        <entry key="..\:/ManproKel14/app/src/main/res/layout/rv_grup.xml" value="0.16666666666666666" />
         <entry key="..\:/ManproKel14/app/src/main/res/layout/rv_pengumuman.xml" value="0.17552083333333332" />
+        <entry key="..\:/ManproKel14/app/src/main/res/layout/rv_pengumuman_admin.xml" value="0.22" />
         <entry key="..\:/ManproKel14/app/src/main/res/layout/toolbar.xml" value="0.16666666666666666" />
         <entry key="..\:/ManproKel14/app/src/main/res/menu/admin_menu.xml" value="0.17447916666666666" />
         <entry key="..\:/ManproKel14/app/src/main/res/menu/home_menu.xml" value="0.22" />
