@@ -40,10 +40,9 @@
         android:layout_height="wrap_content"
 
         android:clickable="true"
-
-        app:srcCompat="@drawable/ic_baseline_send_24"
-        app:layout_constraintTop_toBottomOf="@id/editJudulChat"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editChat"
+        app:srcCompat="@drawable/ic_baseline_send_24" />
 
     <Button
         android:id="@+id/buttonBack"
