@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         tools:srcCompat="@drawable/ic_baseline_image_24"
-        android:paddingVertical="10dp"/>
+        android:paddingBottom="10dp"/>
     <TextView
         android:id="@+id/textViewJudul"
         android:layout_width="wrap_content"

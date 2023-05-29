@@ -16,7 +16,8 @@
             android:id="@+id/textViewEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Log in sebagai:" />
+            android:text="Log in sebagai:"
+            android:paddingHorizontal="20dp"/>
 
         <!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
 <!--            android:id="@+id/fabAccess"-->
