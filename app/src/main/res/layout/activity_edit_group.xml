@@ -6,50 +6,6 @@
     android:layout_height="match_parent"
 
     tools:context=".EditGroup">
-
-
-
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#0000ff"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginRight="125dp"
-                android:src="@drawable/ukp"></ImageView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="-150dp"
-                android:gravity="center"
-                android:text="Edit Group"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textSize="50px"
-                android:textStyle="bold">
-
-            </TextView>
-
-        </LinearLayout>
-    </LinearLayout>
-
-
     <EditText
         android:id="@+id/editTextTitleG"
         android:layout_width="262dp"
@@ -68,45 +24,47 @@
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.195"
         app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
 
     <Button
         android:id="@+id/buttonAddGroup2"
         android:layout_width="112dp"
         android:layout_height="55dp"
 
+        android:layout_marginTop="12dp"
         android:backgroundTint="#0000FF"
-        android:text="Edit"
-        app:layout_constraintBottom_toTopOf="@id/buttonBack"
-        app:layout_constraintTop_toBottomOf="@id/editTextTitleG"
+        android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextTitleG" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="68dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-
-    <Button
-        android:id="@+id/buttonBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Kembali"
-        android:backgroundTint="#0000FF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddGroup2" />
+<!--    <Button-->
+<!--        android:id="@+id/buttonBack"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Kembali"-->
+<!--        android:backgroundTint="#0000FF"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/buttonAddGroup2" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

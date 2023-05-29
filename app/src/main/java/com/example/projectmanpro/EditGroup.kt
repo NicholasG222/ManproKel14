@@ -39,7 +39,7 @@ class EditGroup : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_group)
-        val back = findViewById<Button>(R.id.buttonBack)
+//        val back = findViewById<Button>(R.id.buttonBack)
         firebaseStore = FirebaseStorage.getInstance()
         storageReference = FirebaseStorage.getInstance().reference
 
@@ -77,10 +77,10 @@ class EditGroup : AppCompatActivity() {
             uploadImage()
 
         }
-        back.setOnClickListener {
-            val intent = Intent(this@EditGroup, MainAdmin::class.java)
-            startActivity(intent)
-        }
+//        back.setOnClickListener {
+//            val intent = Intent(this@EditGroup, MainAdmin::class.java)
+//            startActivity(intent)
+//        }
     }
     companion object{
         const val data = "data"

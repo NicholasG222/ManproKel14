@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/imageViewLogo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_gravity="left"
             android:src="@drawable/ukp"
             app:layout_constraintStart_toStartOf="parent"

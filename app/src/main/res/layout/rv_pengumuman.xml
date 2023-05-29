@@ -42,6 +42,11 @@
         android:layout_marginBottom="50px"
         android:text="Isi pengumuman"
         android:ellipsize="end"
-
         />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/underline"
+        android:layout_marginTop="20dp"/>
 </LinearLayout>
