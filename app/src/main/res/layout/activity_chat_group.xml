@@ -5,73 +5,79 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
+    android:padding="20dp"
+    tools:context=".ChatGroupActivity">
 
-    tools:context=".ChatGroupActivity"
-    >
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvChatGrup"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editChat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:hint="Tambah pengumuman grup"
-        app:layout_constraintTop_toBottomOf="@id/editJudulChat"
-        app:layout_constraintStart_toStartOf="parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-         />
+            <Button
+                android:id="@+id/buttonBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kembali" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabSend"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvChatGrup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:overScrollMode="never">
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            </androidx.recyclerview.widget.RecyclerView>
 
-        android:clickable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editChat"
-        app:srcCompat="@drawable/ic_baseline_send_24" />
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:text="Upload Gambar"
+                android:textSize="20dp" />
 
-    <Button
-        android:id="@+id/buttonBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Kembali"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="12dp"
+                app:srcCompat="@drawable/uploadimage" />
 
-    <EditText
-        android:id="@+id/editJudulChat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Tambah judul pengumuman"
-        app:layout_constraintTop_toBottomOf="@id/imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/editChat" />
+            <EditText
+                android:id="@+id/editJudulChat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
-        app:layout_constraintBottom_toTopOf="@+id/editJudulChat"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rvChatGrup"
-        app:srcCompat="@drawable/ic_baseline_image_24" />
+                android:ems="10"
+                android:hint="Tambah judul pengumuman"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editChat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Tambah pengumuman grup"
+
+                android:inputType="textMultiLine" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabSend"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="end"
+                android:clickable="true"
+                app:srcCompat="@drawable/ic_baseline_send_24" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
