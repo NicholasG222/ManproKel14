@@ -1,0 +1,8 @@
+Analisis kebutuhan home mhsiswa:
+Lihat pengumuman (RecView)
+Lihat grup (RecView)
+Search bar (Hans)
+MEnampilkan logo app dan nama user yang login
+Join grup (button)
+Lihat detail pengumuman (button)
+Template (LinearView)
