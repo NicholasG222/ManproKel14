@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeUser">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log in sebagai: " />
+
+        <SearchView
+            android:id="@+id/searchButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="Search here"
+            android:iconifiedByDefault="false"
+            android:background="@drawable/email_et"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="50px"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="Pengumuman Informatika" />
+        <TextView
+            android:id="@+id/textViewKosongAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30px"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:text="Data tidak ditemukan" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAccept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_baseline_admin_panel_settings_24" />
+
+        <Button
+            android:id="@+id/buttonAddAnn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:backgroundTint="#0000ff"
+            android:text="+ Add Announcement" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/rvPengumuman"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textViewMore"
+            android:textSize="50px"
+            android:textColor="#3a3afc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="See more >>"
+            android:paddingHorizontal="20dp"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100px"
+            android:gravity="center"
+            android:text="Grup Pengumuman"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="50px"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewKosongGrupAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30px"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:text="Data tidak ditemukan" />
+
+        <Button
+            android:id="@+id/buttonAddGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#0000ff"
+            android:text="+ Add Group"
+            android:layout_marginHorizontal="40dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/rvGrup"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textViewMore2"
+            android:textSize="50px"
+            android:textColor="#3a3afc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="See more >>"
+            android:paddingHorizontal="20dp"/>
+    </LinearLayout>
+</ScrollView>

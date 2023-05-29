@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="20dp"
+    android:background="@drawable/email_et"
+    android:layout_marginTop="30dp">
+
+    <TextView
+        android:id="@+id/textViewJudul"
+        android:layout_width="318dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50sp"
+        android:layout_marginRight="50sp"
+        android:gravity="center"
+        android:text="Judul"
+        android:textAllCaps="true"
+        android:textSize="20dp"
+
+        android:textStyle="bold"
+
+        />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        tools:srcCompat="@drawable/ic_baseline_image_24"
+        android:paddingVertical="10dp"/>
+
+    <TextView
+        android:id="@+id/textViewGeneral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="General"
+        />
+
+    <TextView
+        android:id="@+id/textViewPengumuman"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginBottom="50px"
+        android:text="Isi pengumuman"
+        android:ellipsize="end"
+
+        />
+
+</LinearLayout>
