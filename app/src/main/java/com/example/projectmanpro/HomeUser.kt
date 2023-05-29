@@ -41,6 +41,7 @@ class HomeUser : AppCompatActivity() {
     private var adapterG = AdapterGrup(listGrup)
 
     private fun SiapkanData(){
+
         db.collection("tbPengumuman")
             .get()
             .addOnSuccessListener { result ->
@@ -154,6 +155,8 @@ class HomeUser : AppCompatActivity() {
         sp = getSharedPreferences("dataSP", MODE_PRIVATE)
         var email = sp.getString("spRegister", null)
         textEmail.setText("Log in sebagai: ${email}")
+
+
         db.collection("tbPengumuman")
             .get()
             .addOnSuccessListener { result ->
@@ -216,7 +219,9 @@ class HomeUser : AppCompatActivity() {
 
                             }
                             rvPengumuman.layoutManager = LinearLayoutManager(this)
+
                             rvPengumuman.adapter = AdapterPengumuman(listPengumuman)
+
                         }
                 }
 
