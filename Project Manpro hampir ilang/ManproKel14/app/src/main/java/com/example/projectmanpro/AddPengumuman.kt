@@ -111,7 +111,21 @@ class AddPengumuman : AppCompatActivity() {
                     Toast.makeText(this, "Gagal upload image", Toast.LENGTH_LONG).show()
                 }
         } else {
-            Toast.makeText(this, "Image tidak boleh kosong", Toast.LENGTH_SHORT).show()
+            val announcement =
+                Pengumuman("none", inputTitle.text.toString(), date, inputContent.text.toString(),inputTitle.text.toString())
+            announcement.judul?.let { it1 ->
+                db.collection("tbPengumuman").document(inputTitle.text.toString()).set(announcement)
+                    .addOnSuccessListener {
+                        inputTitle.setText("")
+
+                        inputContent.setText("")
+
+                        Toast.makeText(this, "Simpan data berhasil", Toast.LENGTH_LONG).show()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this, "Gagal menyimpan data", Toast.LENGTH_LONG).show()
+                    }
+            }
         }
     }
 

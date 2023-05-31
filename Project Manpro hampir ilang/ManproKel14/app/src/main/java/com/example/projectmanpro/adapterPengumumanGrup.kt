@@ -44,21 +44,21 @@ class adapterPengumumanGrup(
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         var grupPengumuman = listPengumuman[position]
-        if(bool){
-            holder.delete.isVisible = true
-        }else{
-            holder.delete.isVisible = false
-        }
+        holder.delete.isVisible = bool
 
         holder._nama.setText(grupPengumuman.pengirim)
         holder._isiPengumuman.setText(grupPengumuman.isi)
         holder.judul.setText(grupPengumuman.judul)
         holder._tanggal.setText(grupPengumuman.date)
-        val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(grupPengumuman.gambar!!)
-        imageRef.getBytes(100*100*1024).addOnSuccessListener {
-            val bitmap =  BitmapFactory.decodeByteArray(it, 0, it.size)
-            holder._gambar.setImageBitmap(bitmap)
+        if(grupPengumuman.gambar != "none") {
+            val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(grupPengumuman.gambar!!)
+            imageRef.getBytes(100 * 100 * 1024).addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
+                holder._gambar.setImageBitmap(bitmap)
 
+            }
+        }else{
+            holder._gambar.isVisible = false
         }
         holder.delete.setOnClickListener {
             onItemClickCallback.delAnn(grupPengumuman)

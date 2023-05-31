@@ -187,7 +187,21 @@ class AddGroup : AppCompatActivity() {
                     Toast.makeText(this, "Gagal upload image", Toast.LENGTH_LONG).show()
                 }
         } else {
-            Toast.makeText(this, "Image tidak boleh kosong", Toast.LENGTH_SHORT).show()
+            val group = Grup("none", inputTitle.text.toString(),kategori, currEmail,inputTitle.text.toString())
+
+            group.nama?.let { it1 ->
+                db.collection("tbGrup").document(group.nama!!).set(group)
+                    .addOnSuccessListener {
+                        inputTitle.setText("")
+
+
+
+                        Toast.makeText(this, "Simpan data berhasil", Toast.LENGTH_LONG).show()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this, "Gagal menyimpan data", Toast.LENGTH_LONG).show()
+                    }
+            }
         }
     }
 

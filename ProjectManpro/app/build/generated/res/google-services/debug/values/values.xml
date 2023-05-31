@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">550665459667-ckvh1rkpv3oe1nc4k42j27jeh1nuetju.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">550665459667</string>
+    <string name="google_api_key" translatable="false">AIzaSyA4KvIoDR6-mUmBK3gs_X_Kh2dzNScZfSg</string>
+    <string name="google_app_id" translatable="false">1:550665459667:android:708b175563effa77ec8126</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyA4KvIoDR6-mUmBK3gs_X_Kh2dzNScZfSg</string>
+    <string name="google_storage_bucket" translatable="false">manproapp.appspot.com</string>
+    <string name="project_id" translatable="false">manproapp</string>
+</resources>

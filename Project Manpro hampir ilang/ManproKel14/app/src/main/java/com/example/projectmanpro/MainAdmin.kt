@@ -306,7 +306,7 @@ class MainAdmin : AppCompatActivity() {
 
     fun setCallbackG(){
         bool = role == "Super Admin" || role == "Kaprodi" || role == "Wakil kaprodi" || role == "Sekretaris" ||role == "Koordinator skripsi"
-        adapterG = AdapterGrupAdmin(listGrup, bool)
+
         adapterG.setOnItemClickCallback(object : AdapterGrupAdmin.OnItemClickCallback{
 
 
@@ -325,6 +325,16 @@ class MainAdmin : AppCompatActivity() {
                         "HAPUS",
                         DialogInterface.OnClickListener { dialogInterface, i ->
                             db.collection("tbGrup").document(pos.original!!).delete()
+                            db.collection("tbPengumumanGrup").get().addOnSuccessListener { result ->
+                                for(doc in result){
+                                    var grup = doc.getString("grup")!!
+                                    if(grup == pos.original){
+                                        var judul = doc.getString("judul")!!
+                                        db.collection("tbPengumumanGrup").document(judul).delete()
+                                    }
+                                }
+
+                            }
                             listGrup.remove(pos)
                             adapterG.notifyDataSetChanged()
 
@@ -359,7 +369,7 @@ class MainAdmin : AppCompatActivity() {
 
     fun setCallbackA() {
         bool = role == "Super Admin" || role == "Kaprodi" || role == "Wakil kaprodi" || role == "Sekretaris" ||role == "Koordinator skripsi"
-        adapterA = AdapterPengumumanAdmin(listPengumuman, bool)
+
         adapterA.setOnItemClickCallback(object :
             AdapterPengumumanAdmin.OnItemClickCallback {
             override fun onItemClicked(data: Pengumuman) {

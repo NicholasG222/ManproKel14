@@ -54,24 +54,20 @@ class AdapterPengumumanAdmin (
         holder.judul.setText(pengumuman.judul)
         holder.general.setText(pengumuman.date)
         holder.isiPengumuman.setText(pengumuman.isi)
-        val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(pengumuman.image!!)
-        imageRef.getBytes(100*100*1024).addOnSuccessListener {
-            val bitmap =  BitmapFactory.decodeByteArray(it, 0, it.size)
-            holder.imagePicker.setImageBitmap(bitmap)
+        if(pengumuman.image != "none") {
+            val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(pengumuman.image!!)
+            imageRef.getBytes(100 * 100 * 1024).addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
+                holder.imagePicker.setImageBitmap(bitmap)
 
-        }
-
-        if(bool){
-            holder.buttonDeleteAnnounce.isVisible = true
+            }
         }else{
-            holder.buttonDeleteAnnounce.isVisible = false
+            holder.imagePicker.isVisible = false
         }
 
-        if(bool){
-            holder.buttonEditAnnounce.isVisible = true
-        }else{
-            holder.buttonEditAnnounce.isVisible = false
-        }
+        holder.buttonDeleteAnnounce.isVisible = bool
+
+        holder.buttonEditAnnounce.isVisible = bool
 
 
 

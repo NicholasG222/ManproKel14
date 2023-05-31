@@ -1,0 +1,154 @@
+[
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/layout_activity_chat_group.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/layout/activity_chat_group.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.projectmanpro.app-main-26:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.projectmanpro.app-main-26:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/layout_activity_add_group.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/layout/activity_add_group.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/layout_splash_screem.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/layout/splash_screem.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/drawable_infor.jpg.flat",
+        "source": "com.example.projectmanpro.app-main-26:/drawable/infor.jpg"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/layout_rv_group_admin.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/layout/rv_group_admin.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/layout_rv_grup.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/layout/rv_grup.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.projectmanpro.app-main-26:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/drawable-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/xml_backup_rules.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/drawable_ukp.png.flat",
+        "source": "com.example.projectmanpro.app-main-26:/drawable/ukp.png"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/layout_activity_edit_pengumuman.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/layout/activity_edit_pengumuman.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.projectmanpro.app-main-26:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/drawable-v24_logo.jpg.flat",
+        "source": "com.example.projectmanpro.app-main-26:/drawable-v24/logo.jpg"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/layout_activity_main_admin.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/layout/activity_main_admin.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.projectmanpro.app-main-26:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.projectmanpro.app-main-26:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/drawable-v24_logotransparent.png.flat",
+        "source": "com.example.projectmanpro.app-main-26:/drawable-v24/logotransparent.png"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.projectmanpro.app-main-26:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/layout_activity_register.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/layout/activity_register.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.projectmanpro.app-main-26:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/layout_activity_splash_screen.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/layout/activity_splash_screen.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/layout_activity_login.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/layout/activity_login.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/layout_received_chat.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/layout/received_chat.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/layout_rv_pengumuman_admin.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/layout/rv_pengumuman_admin.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/layout_activity_adapter_pengumuman_admin.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/layout/activity_adapter_pengumuman_admin.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.projectmanpro.app-main-26:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/layout_rv_pengumuman.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/layout/rv_pengumuman.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/layout_activity_edit_group.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/layout/activity_edit_group.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/layout_activity_add_pengumuman.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/layout/activity_add_pengumuman.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/layout_activity_main.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.projectmanpro.app-main-26:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.projectmanpro.app-merged_res-24:/drawable_ic_baseline_admin_panel_settings_24.xml.flat",
+        "source": "com.example.projectmanpro.app-main-26:/drawable/ic_baseline_admin_panel_settings_24.xml"
+    }
+]

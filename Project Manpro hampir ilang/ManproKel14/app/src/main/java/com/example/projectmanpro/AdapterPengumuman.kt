@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
 import kotlin.coroutines.coroutineContext
@@ -37,11 +38,15 @@ class AdapterPengumuman (
         holder.judul.setText(pengumuman.judul)
         holder.general.setText(pengumuman.date)
         holder.isiPengumuman.setText(pengumuman.isi)
-        val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(pengumuman.image!!)
-        imageRef.getBytes(100*100*1024).addOnSuccessListener {
-            val bitmap =  BitmapFactory.decodeByteArray(it, 0, it.size)
-            holder.imagePicker.setImageBitmap(bitmap)
+        if(pengumuman.image != "none") {
+            val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(pengumuman.image!!)
+            imageRef.getBytes(100 * 100 * 1024).addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
+                holder.imagePicker.setImageBitmap(bitmap)
 
+            }
+        }else{
+            holder.imagePicker.isVisible = false
         }
     }
 

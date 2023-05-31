@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
 
@@ -40,11 +41,15 @@ class AdapterGrup(
             var pengumuman =listGrup[position]
             holder.nama.setText(pengumuman.nama)
             holder.kategori.setText(pengumuman.kategori)
-            val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(pengumuman.gambar!!)
-            imageRef.getBytes(100*100*1024).addOnSuccessListener {
-                val bitmap =  BitmapFactory.decodeByteArray(it, 0, it.size)
-                holder.foto.setImageBitmap(bitmap)
-                Log.d("success", "ok")
+            if(pengumuman.gambar != "none") {
+                val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(pengumuman.gambar!!)
+                imageRef.getBytes(100 * 100 * 1024).addOnSuccessListener {
+                    val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
+                    holder.foto.setImageBitmap(bitmap)
+
+                }
+            }else{
+                holder.foto.setImageResource(R.drawable.logopetra)
             }
             holder.foto.setOnClickListener {
                 onItemClickCallback.imageClicked(listGrup[position])

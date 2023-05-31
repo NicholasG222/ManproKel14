@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import com.example.projectmanpro.DateHelper.getCurrentDate
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
@@ -59,12 +60,15 @@ class EditPengumuman : AppCompatActivity() {
             editIsi.setText(isi)
             gambar = result.getString("image")!!
             original = result.getString("original")!!
-            val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(gambar)
-            imageRef.getBytes(100*100*1024).addOnSuccessListener {
-                val bitmap =  BitmapFactory.decodeByteArray(it, 0, it.size)
-                img.setImageBitmap(bitmap)
+            if(gambar != "none") {
+                val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(gambar!!)
+                imageRef.getBytes(100 * 100 * 1024).addOnSuccessListener {
+                    val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
+                    img.setImageBitmap(bitmap)
 
-
+                }
+            }else{
+                img.setImageResource(R.drawable.ic_baseline_image_24)
             }
             submit.setOnClickListener {
 

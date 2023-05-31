@@ -55,25 +55,22 @@ class AdapterGrupAdmin(
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         var grup =listGrup[position]
-        if(bool){
-            holder.buttonDelete.isVisible = true
-        }else{
-            holder.buttonDelete.isVisible = false
-        }
+        holder.buttonDelete.isVisible = bool
 
-        if(bool){
-            holder.buttonEdit.isVisible = true
-        }else{
-            holder.buttonEdit.isVisible = false
-        }
+        holder.buttonEdit.isVisible = bool
 
 
         holder.nama.setText(grup.nama)
         holder.kategori.setText(grup.kategori)
-        val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(grup.gambar!!)
-        imageRef.getBytes(100*100*1024).addOnSuccessListener {
-            val bitmap =  BitmapFactory.decodeByteArray(it, 0, it.size)
-            holder.foto.setImageBitmap(bitmap)
+        if(grup.gambar != "none") {
+            val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(grup.gambar!!)
+            imageRef.getBytes(100 * 100 * 1024).addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
+                holder.foto.setImageBitmap(bitmap)
+
+            }
+        }else{
+            holder.foto.setImageResource(R.drawable.logopetra)
 
         }
 

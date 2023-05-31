@@ -248,7 +248,8 @@ class ChatGroupActivity : AppCompatActivity() {
                     .setPositiveButton(
                         "HAPUS",
                         DialogInterface.OnClickListener { dialogInterface, i ->
-                            db.collection("tbPengumumanGrup").document(data.isi!!).delete()
+                            db.collection("tbPengumumanGrup").document(data.judul!!).delete()
+
                             listPengumuman.remove(data)
                             adapterPG.notifyDataSetChanged()
 
@@ -308,7 +309,24 @@ class ChatGroupActivity : AppCompatActivity() {
                     Toast.makeText(this, "Gagal upload image", Toast.LENGTH_LONG).show()
                 }
         } else {
-            Toast.makeText(this, "Image tidak boleh kosong", Toast.LENGTH_SHORT).show()
+            var pgrup = pengumumangrup(
+                    "none",
+            currEmail,
+            inputJudul.text.toString(),
+            inputChat.text.toString(),
+            dataIntent,
+            date
+            )
+            db.collection("tbPengumumanGrup").document(pgrup.judul!!).set(pgrup)
+                .addOnSuccessListener {
+                    Toast.makeText(
+                        this@ChatGroupActivity, "Pengumuman berhasil ditambahkan",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    inputJudul.setText("")
+                    inputChat.setText("")
+                    image.setImageResource(R.drawable.ic_baseline_image_24)
+                }
         }
     }
 
